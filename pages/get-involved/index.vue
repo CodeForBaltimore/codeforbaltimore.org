@@ -61,3 +61,19 @@
         </div>
     </div>
 </template>
+
+<style>
+    .jumbotron-involved {
+    background: linear-gradient(90deg, rgba(0,243,255,0.15870098039215685) 100%, rgba(9,67,121,0.5144432773109244) 100%),url(/images/cfb-involved-header.jpg);
+    background-size: cover;
+        color: #fff;
+        border-radius: 0;
+        margin-bottom: 0;
+        background-position: 50% 30%;
+    }
+    .jumbotron-involved .container {margin: 50px auto;}
+
+    @media screen and (max-width: 768px) {
+        #welcome .p-4 { padding: 1rem!important; }
+    }
+</style>

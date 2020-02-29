@@ -35,3 +35,11 @@
         </div>
     </div>
 </template>
+
+<style>
+    #team h4 {
+        margin-bottom: 0;
+    }
+    #team img {border-radius: 50%}
+    #team .text-muted {margin-bottom: 5px;}
+</style>
