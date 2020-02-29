@@ -98,8 +98,53 @@ export default {
       order: "fields.title",
       include: 5
     });
-
     return { projects };
   }
 };
 </script>
+
+<style>
+    .jumbotron-projects {
+    background: linear-gradient(90deg, rgba(255,0,93,0.22032563025210083) 100%, rgba(9,67,121,0.5144432773109244) 100%),url(/images/cfb_project_caro5.jpg);
+    background-size: cover;
+        color: #fff;
+        border-radius: 0;
+        margin-bottom: 0;
+        background-position: 50% 20%;
+    }
+
+    #projects h3 a {font-size: 1.75rem; margin-bottom: 10px; color: black;}
+    #projects h3 a:hover {color: #cf1f42 !important;}
+    #projects h5 {margin-bottom: 5px; font-weight: bold;}
+    #projects img {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+        transition: box-shadow .4s, transform .4s;
+    }
+    #projects img:hover {box-shadow:0 20px 40px rgba(0, 0, 0, .3);}
+    #projects .skills-list li { background-color: #cf1f42;}
+    #projects .civic-list li { background-color: #563d7c;}
+
+    #projects ul {list-style-type: none; padding-left: 0; }
+
+    #projects ul, #projects li {
+        display: inline;
+        border-radius: 5px;
+        margin: 0 5px;
+        line-height: 2.75;
+    }
+
+    #projects li {
+        margin-bottom: 0.5em;
+        color: white;
+    padding: 5px 15px;
+    }
+
+    #projects li:first-child {
+    margin-left: 0;
+    }
+
+    .img-hov {transition: box-shadow .4s, transform .4s;}
+
+    #projects .btn-outline-primary {color: #1e6488; border: 2px solid #1e6488; font-size: 17px;}
+    #projects .btn-outline-primary:hover {background-color: #1e6488; color: white;}
+</style>

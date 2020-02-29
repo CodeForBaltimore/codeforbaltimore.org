@@ -85,3 +85,20 @@ export default {
 };
 </script>
 
+<style>
+    @media screen and (max-width: 768px) {
+        #upcoming-events .p-4 { padding: 0rem!important; }
+    }
+
+    #upcoming-events .btn-outline-primary {color: #1e6488; border: 2px solid #1e6488; font-size: 17px;}
+    #upcoming-events .btn-outline-primary:hover {background-color: #1e6488; color: white;}
+
+    .jumbotron-events{
+    background: linear-gradient(90deg, rgba(0,67,255,0.3575805322128851) 100%, rgba(9,67,121,0.5144432773109244) 100%),url(/images/events-header1.jpg);
+    background-size: cover;
+        color: #fff;
+        border-radius: 0;
+        margin-bottom: 0;
+        background-position: 50% 60%;
+    }
+</style>

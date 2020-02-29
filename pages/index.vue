@@ -58,19 +58,25 @@
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
       <carousel :navigationEnabled="true">
         <div v-for="(project,index) in projects.items" :key="index">
-        <slide>
-          <a v-bind:href="project.fields.githubLink" target="_blank"><img v-bind:src="'https:' + project.fields.picture.fields.file.url" class="d-block w-100 img-fluid" v-bind:alt="project.fields.title" /></a>
-          <div class="content text-center">
-            <h3 class="display-4">{{ project.fields.title }}</h3>
-            <div v-html="$md.render(project.fields.summary)"></div>
-            <a
-              role="button"
-              class="btn btn-outline-light my-2"
-              target="_blank"
-              v-bind:href="project.fields.githubLink"
-            >Learn more</a>
-          </div>
-        </slide>
+          <slide>
+            <a v-bind:href="project.fields.githubLink" target="_blank">
+              <img
+                v-bind:src="'https:' + project.fields.picture.fields.file.url"
+                class="d-block w-100 img-fluid"
+                v-bind:alt="project.fields.title"
+              />
+            </a>
+            <div class="content text-center">
+              <h3 class="display-4">{{ project.fields.title }}</h3>
+              <div v-html="$md.render(project.fields.summary)"></div>
+              <a
+                role="button"
+                class="btn btn-outline-light my-2"
+                target="_blank"
+                v-bind:href="project.fields.githubLink"
+              >Learn more</a>
+            </div>
+          </slide>
         </div>
       </carousel>
     </div>
@@ -101,6 +107,38 @@ export default {
 </script>
 
 <style>
+.jumbotron {
+  background: linear-gradient(
+      90deg,
+      rgba(23, 0, 255, 0.18951330532212884) 100%,
+      rgba(104, 121, 9, 0.29315476190476186) 100%
+    ),
+    url(/images/cfb-jumbo-header.jpg);
+  background-size: cover;
+  color: #fff;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.jumbotron .container {
+  margin: 50px auto;
+}
+.jumbotron h1 {
+  text-shadow: 2px 2px 6px #4c4c4c;
+}
+
+.intro-action img {
+  max-width: 125px;
+}
+.intro-action .btn-outline-primary {
+  color: #1e6488;
+  border: 2px solid #1e6488;
+  font-size: 17px;
+}
+.intro-action .btn-outline-primary:hover {
+  background-color: #1e6488;
+  color: white;
+}
+
 .VueCarousel-slide {
   position: relative;
   font-family: Arial;
