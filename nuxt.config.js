@@ -3,6 +3,8 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     base: '/CfB-websiteV3/'
   }
 } : {}
+const config = require('./.contentful.json')
+
 export default {
   mode: 'spa',
   /*
@@ -34,7 +36,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-carousel'
-  ], 
+  ],
   /*
   ** Nuxt.js dev-modules
   */
@@ -46,7 +48,45 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    'nuxt-fontawesome',
+    '@nuxtjs/markdownit',
+    '@nuxtjs/axios', ,
+    '@nuxtjs/proxy'
   ],
+  /*
+  ** Fontawesome config
+  */
+  fontawesome: {
+    component: 'fa',
+    imports: [
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['faGithub', 'faLinkedin']
+      }
+    ]
+  },
+  /*
+  ** Markdownit config
+  */
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true
+  },
+  /*
+  ** Axios config
+  */
+  axios: {
+    // proxyHeaders: false
+    crossDomain: true
+  },
+  /*
+  ** Proxy config
+  */
+  proxy: {
+
+  },
   /*
   ** Build configuration
   */
@@ -54,8 +94,12 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
+  },
+  env: {
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN
   },
   routerBase
 }
