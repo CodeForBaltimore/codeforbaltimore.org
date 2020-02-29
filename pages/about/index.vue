@@ -95,15 +95,13 @@ export default {
     }
   },
   async asyncData({ env }) {
-    const vars = {};
-
-    vars.team = await client.getEntries({
+    const team = await client.getEntries({
       content_type: "team",
       order: "fields.title",
       include: 5
     });
 
-    return vars;
+    return { team };
   }
 };
 </script>

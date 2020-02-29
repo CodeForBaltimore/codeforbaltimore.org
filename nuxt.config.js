@@ -49,7 +49,9 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     'nuxt-fontawesome',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/axios', ,
+    '@nuxtjs/proxy'
   ],
   /*
   ** Fontawesome config
@@ -71,6 +73,19 @@ export default {
     linkify: true,
     breaks: true,
     injected: true
+  },
+  /*
+  ** Axios config
+  */
+  axios: {
+    // proxyHeaders: false
+    crossDomain: true
+  },
+  /*
+  ** Proxy config
+  */
+  proxy: {
+
   },
   /*
   ** Build configuration

@@ -89,15 +89,13 @@ export default {
     Slide
   },
   async asyncData({ env }) {
-    const vars = {};
-
-    vars.projects = await client.getEntries({
+    const projects = await client.getEntries({
       content_type: "project",
       order: "fields.title",
       include: 5
     });
 
-    return vars;
+    return { projects };
   }
 };
 </script>
