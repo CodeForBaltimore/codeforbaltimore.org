@@ -3,7 +3,12 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     base: '/CfB-websiteV3/'
   }
 } : {}
-const config = require('./.contentful.json')
+let config = require('./.contentful.json')
+
+if (config === undefined) {
+  config.CTF_SPACE_ID = process.env.CTF_SPACE_ID;
+  config.CTF_CDA_ACCESS_TOKEN = process.env.CTF_CDA_ACCESS_TOKEN;
+}
 
 export default {
   mode: 'spa',
