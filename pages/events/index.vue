@@ -20,65 +20,102 @@
         </div>
       </div>
 
-      <div class="row py-2">
-        <div class="col-sm-12 py-2 my-auto">
-          <h3 class="display-4">Upcoming Events</h3>
+      <div v-if="events !== undefined">
+        <div class="row py-2">
+          <div class="col-sm-12 py-2 my-auto">
+            <h3 class="display-4">Upcoming Events:</h3>
+          </div>
         </div>
-      </div>
+        <div v-for="(event, index) in events.rss.channel[0].item" :key="index">
+          <div class="row py-2">
+            <div class="col-sm-8 py-2 my-auto order-lg-first">
+              <h4 v-if="findDate(event.description[0])" style="color:#1e6488">
+                {{ event.description[0].substring(
+                event.description[0].indexOf(findDate(event.description[0])),
+                event.description[0].indexOf(findAmPm(event.description[0]))) }}{{ findAmPm(event.description[0]) }}
+              </h4>
+              <h3>{{ event.title[0] }}</h3>
+              <p class="text-muted">
+                <i class="fas fa-map-marker-alt"></i> Spark Baltimore
+              </p>
+              <div
+                v-html="event.description[0].substring(0,event.description[0].indexOf('<p>--<br/>'))"
+              ></div>
 
-      <div class="row py-2">
-        <div class="col-sm-4 py-2 my-auto">
-          <img
-            src="images/community-night-1200x1100.jpg"
-            class="img-fluid p-2"
-            alt="Code for Baltimore Welcome image"
-          />
+              <a v-bind:href="event.guid[0]._">
+                <button type="button" class="btn btn-outline-primary">Attend</button>
+              </a>
+            </div>
+            <div class="col-sm-12 py-2 my-auto">
+              <hr />
+            </div>
+          </div>
         </div>
-        <div class="col-sm-8 py-2 my-auto order-lg-first">
-          <h4 style="color:#1e6488">Wednesday, January 9th, 6:00PM</h4>
-          <h3>January Community Night</h3>
-          <p class="text-muted">
-            <i class="fas fa-map-marker-alt"></i> Spark Baltimore
-          </p>
-          <p>Join us for a Hack Night! Please RSVP so we can get enough food. We'll gather for food and work on the Sync The City project OR if you have another project you'd like to work on, come prepared to chat about it. If you're new, no worries! You can easily jump in wherever your skills are needed. Let us know if you have any questions! Follow us on Twitter & Instagram: @CodeForBmore</p>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI"
-          >Attend</button>
-        </div>
-        <div class="col-sm-12 py-2 my-auto">
-          <hr />
-        </div>
-      </div>
 
-      <div class="row py-2">
-        <div class="col-sm-12 py-2">
-          <h3>
-            Get notified of our next event:
-            <a
-              v-bind:href="events.rss.channel[0].link[0]"
-              target="_blank"
-            >Join our Meetup group</a>
-          </h3>
+        <div class="row py-2">
+          <div class="col-sm-12 py-2">
+            <h3>
+              Get notified of our next event:
+              <a
+                v-bind:href="events.rss.channel[0].link[0]"
+                target="_blank"
+              >Join our Meetup group</a>
+            </h3>
+          </div>
         </div>
       </div>
+      <div v-else></div>
     </div>
   </div>
 </template>
 
 <script>
-const parseString = require('xml2js').parseString;
+const parseString = require("xml2js").parseString;
 
 export default {
-  async asyncData({ $axios }) {
-    $axios.setHeader('Access-Control-Allow-Origin','*');
-    const meetup = await $axios.$get("https://www.meetup.com/Code-for-Baltimore/events/rss/");
-    let events = '';
+  methods: {
+    findDate: desc => {
+      const days = [
+        "Sunday, ",
+        "Monday, ",
+        "Tuesday, ",
+        "Wednesday, ",
+        "Thursday, ",
+        "Friday, ",
+        "Saturday, "
+      ];
 
-    const parse = parseString(meetup,(e, result) => {
+      let res = false;
+
+      days.forEach(day => {
+        if (desc.indexOf(day) > 0) res = day;
+      });
+
+      return res;
+    },
+    findAmPm: desc => {
+      const amPms = [' AM',' PM',' am',' pm'];
+
+      let res = false;
+
+      amPms.forEach(amPm => {
+        if (desc.indexOf(amPm) > 0) res = amPm;
+      });
+
+      return res;
+    }
+  },
+  async asyncData({ $axios }) {
+    let events;
+    try {
+      const meetup = await $axios.$get("/Code-for-Baltimore/events/rss/");
+
+      const parse = parseString(meetup, (e, result) => {
         events = result;
-    });
+      });
+    } catch (e) {
+      console.error(`Error: ${e}`);
+    }
 
     return { events };
   }
@@ -86,19 +123,33 @@ export default {
 </script>
 
 <style>
-    @media screen and (max-width: 768px) {
-        #upcoming-events .p-4 { padding: 0rem!important; }
-    }
+@media screen and (max-width: 768px) {
+  #upcoming-events .p-4 {
+    padding: 0rem !important;
+  }
+}
 
-    #upcoming-events .btn-outline-primary {color: #1e6488; border: 2px solid #1e6488; font-size: 17px;}
-    #upcoming-events .btn-outline-primary:hover {background-color: #1e6488; color: white;}
+#upcoming-events .btn-outline-primary {
+  color: #1e6488;
+  border: 2px solid #1e6488;
+  font-size: 17px;
+}
+#upcoming-events .btn-outline-primary:hover {
+  background-color: #1e6488;
+  color: white;
+}
 
-    .jumbotron-events{
-    background: linear-gradient(90deg, rgba(0,67,255,0.3575805322128851) 100%, rgba(9,67,121,0.5144432773109244) 100%),url(/images/events-header1.jpg);
-    background-size: cover;
-        color: #fff;
-        border-radius: 0;
-        margin-bottom: 0;
-        background-position: 50% 60%;
-    }
+.jumbotron-events {
+  background: linear-gradient(
+      90deg,
+      rgba(0, 67, 255, 0.3575805322128851) 100%,
+      rgba(9, 67, 121, 0.5144432773109244) 100%
+    ),
+    url(/images/events-header1.jpg);
+  background-size: cover;
+  color: #fff;
+  border-radius: 0;
+  margin-bottom: 0;
+  background-position: 50% 60%;
+}
 </style>

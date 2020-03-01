@@ -23,7 +23,7 @@
             <div class="col-sm p-4">
             <img src="images/icon_join_us.png" class="mx-auto d-block img-fluid" alt="Get involved at hack night icon">
             <p class="lead">Share your project ideas or join our Hack nights</p>
-            <a role="button" class="btn btn-outline-primary my-2" target="_blank" href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc0VE6Qmu7qiMFute7K40Pr6xQsRNSLoASlYeIGXPWUF4Mrbg/viewform?usp=sf_link">Volunteer</a>
+            <a role="button" class="btn btn-outline-primary my-2" target="_blank" href="https://forms.gle/wZxQAfas1kpSmpvU8">Volunteer</a>
             </div>
             <div class="col-sm p-4">
             <img src="images/icon_meetup.png" class="mx-auto d-block img-fluid" alt="Go to Meetup logo/icon">
@@ -54,7 +54,7 @@
             <p>Please fill out this form if you are new to the community. We want to learn more about you so that we understand your skillset and can find the best project fit for you. Make sure to check out the Meetup group for all of our upcoming events and join our Slack.</p>
             </div>
             <div class="col-sm-12 pb-4 my-auto">
-            <a role="button" class="btn btn-outline-primary my-2 mx-auto" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSc0VE6Qmu7qiMFute7K40Pr6xQsRNSLoASlYeIGXPWUF4Mrbg/viewform?usp=sf_link">Volunteer Form</a>
+            <a role="button" class="btn btn-outline-primary my-2 mx-auto" target="_blank" href="https://forms.gle/wZxQAfas1kpSmpvU8">Volunteer Form</a>
             </div>
         </div>
 

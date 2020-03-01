@@ -21,11 +21,7 @@
             alt="Get involved at hack night icon"
           />
           <p class="lead">Volunteer with us and share your skills</p>
-          <a
-            role="button"
-            class="btn btn-outline-primary my-2"
-            href="get-involved.html"
-          >Get Involved</a>
+          <nuxt-link role="button" class='btn btn-outline-primary my-2' to="/get-involved" exact>Get Involved</nuxt-link>
         </div>
         <div class="col-sm p-4">
           <img src="images/icon_slack.png" class="mx-auto d-block img-fluid" alt="Slack logo/icon" />
