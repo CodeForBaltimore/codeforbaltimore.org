@@ -3,12 +3,6 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     base: '/CfB-websiteV3/'
   }
 } : {}
-let config = require('./.contentful.json')
-
-if (config === undefined) {
-  config.CTF_SPACE_ID = process.env.CTF_SPACE_ID;
-  config.CTF_CDA_ACCESS_TOKEN = process.env.CTF_CDA_ACCESS_TOKEN;
-}
 
 export default {
   mode: 'spa',
@@ -46,7 +40,13 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/dotenv'
   ],
+  dotenv: {
+    /* module options */
+    systemvars: true,
+    path: './'
+  },
   /*
   ** Nuxt.js modules
   */
@@ -101,9 +101,10 @@ export default {
     extend(config, ctx) {
     }
   },
+  /*
+  ** env vars not added to .env or system environment
+  */
   env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN
   },
   routerBase
 }
