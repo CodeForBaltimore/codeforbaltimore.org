@@ -99,6 +99,7 @@ export default {
     }
   },
   env: {
+    NODE_ENV: process.env.NODE_ENV,
     CONTENTFUL_SPACE_ID: process.env.CTF_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
   },
