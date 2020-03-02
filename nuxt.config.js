@@ -12,7 +12,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Code for Baltimore',
+    title: 'Code for Baltimore', 
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -98,9 +98,6 @@ export default {
     extend(config, ctx) {
     }
   },
-  /*
-  ** env vars not added to .env or system environment
-  */
   env: {
     CONTENTFUL_SPACE_ID: process.env.CTF_SPACE_ID,
     CONTENTFUL_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
