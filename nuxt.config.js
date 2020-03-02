@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
     base: '/CfB-websiteV3/'
@@ -105,6 +107,8 @@ export default {
   ** env vars not added to .env or system environment
   */
   env: {
+    CONTENTFUL_SPACE_ID: process.env.CTF_SPACE_ID,
+    CONTENTFUL_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
   },
   routerBase
 }
