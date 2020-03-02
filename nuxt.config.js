@@ -86,7 +86,7 @@ export default {
   ** Proxy config
   */
   proxy: {
-    '/Code-for-Baltimore/events/rss/': 'https://www.meetup.com'
+    '/Code-for-Baltimore/events/rss/': { target: 'https://www.meetup.com', ws: false }
   },
   /*
   ** Build configuration

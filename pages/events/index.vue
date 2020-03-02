@@ -108,9 +108,7 @@ export default {
   async asyncData({ $axios }) {
     let events;
     try {
-      const url = (process.env.NODE_ENV === 'prod') ? 'https://www.meetup.com' : '';
-      console.log(process.env.NODE_ENV);
-      const meetup = await $axios.$get(`${url}/Code-for-Baltimore/events/rss/`);
+      const meetup = await $axios.$get(`/Code-for-Baltimore/events/rss/`);
 
       const parse = parseString(meetup, (e, result) => {
         events = result;
