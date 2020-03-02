@@ -41,7 +41,7 @@
           <h2 class="display-4">Active projects</h2>
         </div>
 
-        <div v-for="(project, index) in projects.items" :key="index">
+        <div v-for="(project, index) in projects" :key="index">
           <div class="col-lg-5 my-auto img-hov">
             <a v-bind:href="project.fields.githubLink" target="_blank">
               <img
@@ -87,18 +87,17 @@
 </template>
 
 <script>
-import { createClient } from "~/plugins/contentful.js";
+import contentful from "~/plugins/contentful.js";
 
-const client = createClient();
 
 export default {
   async asyncData({ env }) {
-    const projects = await client.getEntries({
+    const projects = await contentful.getEntries({
       content_type: "project",
       order: "fields.title",
       include: 5
     });
-    return { projects };
+    return { projects: projects.items };
   }
 };
 </script>

@@ -53,7 +53,7 @@
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
       <carousel :navigationEnabled="true">
-        <div v-for="(project,index) in projects.items" :key="index">
+        <div v-for="(project,index) in projects" :key="index">
           <slide>
             <a v-bind:href="project.fields.githubLink" target="_blank">
               <img
@@ -81,9 +81,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import { createClient } from "~/plugins/contentful.js";
-
-const client = createClient();
+import contentful from "~/plugins/contentful.js";
 
 export default {
   components: {
@@ -91,13 +89,13 @@ export default {
     Slide
   },
   async asyncData({ env }) {
-    const projects = await client.getEntries({
+    const projects = await contentful.getEntries({
       content_type: "project",
       order: "fields.title",
       include: 5
     });
 
-    return { projects };
+    return { projects: projects.items };
   }
 };
 </script>
