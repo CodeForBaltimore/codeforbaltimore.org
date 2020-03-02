@@ -25,55 +25,53 @@
           />
         </div>
       </div>
-      <team />
-    </div>
 
-    <div class="row py-4" id="team">
-      <div class="col-sm-12 py-3">
-        <h3 class="display-4">Team Members</h3>
-        <div v-for="(member, index) in team.items" :key="index">
-          <div class="col-sm-4 py-4 mx-auto">
-            <img
-              v-if="member.fields.picture"
-              v-bind:src="'https:' + member.fields.picture.fields.file.url"
-              class="img-fluid mb-2"
-              v-bind:alt="member.fields.name"
-            />
-            <img
-              v-else
-              src="images/default-headshot.jpg"
-              class="img-fluid mb-2"
-              v-bind:alt="member.fields.name"
-            />
+      <div class="row py-4" id="team">
+        <div class="col-sm-12 py-3">
+          <h3 class="display-4">Team Members</h3>
+          <div class="row text-center py-3">
+            <div v-for="(member, index) in team.items" :key="index" class="col-sm-4 py-4 mx-auto">
+              <img
+                v-if="member.fields.picture"
+                v-bind:src="'https:' + member.fields.picture.fields.file.url"
+                class="img-fluid mb-2"
+                v-bind:alt="member.fields.name"
+              />
+              <img
+                v-else
+                src="images/default-headshot.jpg"
+                class="img-fluid mb-2"
+                v-bind:alt="member.fields.name"
+              />
 
-            <h4>{{ member.fields.name }}</h4>
-            <div v-if="member.fields.socialLinks" class="socials">
-              <ul v-for="(link, i) in member.fields.socialLinks" :key="i">
-                <li>
+              <h4>{{ member.fields.name }}</h4>
+              <ul v-if="member.fields.socialLinks" class="socials">
+                <li v-for="(link, i) in member.fields.socialLinks" :key="i">
                   <a v-bind:href="link" target="_blank">
                     <fa v-if="link.includes('github')" :icon="faGithub" />
                     <fa v-if="link.includes('linkedin')" :icon="faLinkedin" />
                   </a>
                 </li>
               </ul>
-            </div>
-            <p class="text-muted">{{ member.fields.title }}</p>
-            <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
-          </div>
-        </div>
 
-        <p class="mt-2">
-          We are always looking for more support! Currently, we need a
-          <strong>Co-Tech Lead</strong> to join our Core Team. Check out the position descriptions
-          <a
-            href="https://docs.google.com/document/d/1sZN4Ct-JjMgDASn_QNjWur7SY0M_6rst5BnxKXV4qn8/edit"
-            target="_blank"
-          >here</a>. If you are interested in these positions, please email us -
-          <a
-            href="mailto:hello@codeforbaltimore.org"
-            target="_blank"
-          >hello@codeforbaltimore.org</a>.
-        </p>
+              <p class="text-muted">{{ member.fields.title }}</p>
+              <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
+            </div>
+          </div>
+
+          <p class="mt-2">
+            We are always looking for more support! Currently, we need a
+            <strong>Co-Tech Lead</strong> to join our Core Team. Check out the position descriptions
+            <a
+              href="https://docs.google.com/document/d/1sZN4Ct-JjMgDASn_QNjWur7SY0M_6rst5BnxKXV4qn8/edit"
+              target="_blank"
+            >here</a>. If you are interested in these positions, please email us -
+            <a
+              href="mailto:hello@codeforbaltimore.org"
+              target="_blank"
+            >hello@codeforbaltimore.org</a>.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -81,52 +79,68 @@
 
 
 <script>
-import { createClient } from "~/plugins/contentful.js";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+  import { createClient } from "~/plugins/contentful.js";
+  import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-const client = createClient();
+  const client = createClient();
 
-export default {
-  computed: {
-    faGithub() {
-      return faGithub;
+  export default {
+    computed: {
+      faGithub() {
+        return faGithub;
+      },
+      faLinkedin() {
+        return faLinkedin;
+      }
     },
-    faLinkedin() {
-      return faLinkedin;
-    }
-  },
-  async asyncData({ env }) {
-    const team = await client.getEntries({
-      content_type: "team",
-      order: "fields.title",
-      include: 5
-    });
+    async asyncData({ env }) {
+      const team = await client.getEntries({
+        content_type: "team",
+        order: "fields.title",
+        include: 5
+      });
 
-    return { team };
-  }
-};
+      return { team };
+    }
+  };
 </script>
 
 <style>
-.embed-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-}
-.embed-container iframe,
-.embed-container object,
-.embed-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-@media screen and (max-width: 768px) {
-  #about-us .p-4 {
-    padding: 1rem !important;
+  .embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
   }
-}
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    #about-us .p-4 {
+      padding: 1rem !important;
+    }
+  }
+  #team h4 {
+    margin-bottom: 0;
+  }
+  #team img {
+    border-radius: 50%;
+  }
+  #team .text-muted {
+    margin-bottom: 5px;
+  }
+  #team .socials {
+    padding: 0;
+    margin: 0;
+  }
+  #team .socials li {
+    display: inline;
+  }
 </style>
