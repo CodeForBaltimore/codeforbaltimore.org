@@ -31,7 +31,7 @@
     <div class="row py-4" id="team">
       <div class="col-sm-12 py-3">
         <h3 class="display-4">Team Members</h3>
-        <div v-for="(member, index) in team.items" :key="index">
+        <div v-for="(member, index) in team" :key="index">
           <div class="col-sm-4 py-4 mx-auto">
             <img
               v-if="member.fields.picture"
@@ -81,10 +81,10 @@
 
 
 <script>
-import { createClient } from "~/plugins/contentful.js";
+import contentful from "~/plugins/contentful.js";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-const client = createClient();
+// const client = createClient();
 
 export default {
   computed: {
@@ -96,13 +96,13 @@ export default {
     }
   },
   async asyncData({ env }) {
-    const team = await client.getEntries({
+    const team = await contentful.getEntries({
       content_type: "team",
       order: "fields.title",
       include: 5
     });
 
-    return { team };
+    return { team: team.items };
   }
 };
 </script>
