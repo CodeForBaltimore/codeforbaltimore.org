@@ -52,17 +52,15 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled="true">
-        <div v-for="(project,index) in projects" :key="index">
-          <slide>
-            <a v-bind:href="project.fields.githubLink" target="_blank">
-              <img
-                v-bind:src="'https:' + project.fields.picture.fields.file.url"
-                class="d-block w-100 img-fluid"
-                v-bind:alt="project.fields.title"
-              />
-            </a>
-            <div class="content text-center">
+      <carousel :navigationEnabled="true" perPage="1">
+        <slide v-for="(project,index) in projects" :key="index">
+          <a v-bind:href="project.fields.githubLink" class='slide-link' target="_blank">
+            <!-- <img
+              v-bind:src="'https:' + project.fields.picture.fields.file.url"
+              class="d-block w-100 img-fluid"
+              v-bind:alt="project.fields.title"
+            /> -->
+            <div class="content text-center slide" v-bind:style="'background-image: url(https:' + project.fields.picture.fields.file.url + ')'">
               <h3 class="display-4">{{ project.fields.title }}</h3>
               <div v-html="$md.render(project.fields.summary)"></div>
               <a
@@ -72,8 +70,8 @@
                 v-bind:href="project.fields.githubLink"
               >Learn more</a>
             </div>
-          </slide>
-        </div>
+          </a>
+        </slide>
       </carousel>
     </div>
   </div>
@@ -146,5 +144,19 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.slide {
+  background-position: top center;
+  padding-top: 10em;
+  padding-bottom: 2em;
+}
+
+a.slide-link:link,
+a.slide-link:hover,
+a.slide-link:visited,
+a.slide-link:active {
+  color: white !important;
+  text-decoration: none;
 }
 </style>
