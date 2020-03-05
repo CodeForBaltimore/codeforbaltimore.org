@@ -82,16 +82,14 @@
 import contentful from "~/plugins/contentful.js";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-// const client = createClient();
-
-  export default {
-    computed: {
-      faGithub() {
-        return faGithub;
-      },
-      faLinkedin() {
-        return faLinkedin;
-      }
+export default {
+  computed: {
+    faGithub() {
+      return faGithub;
+    },
+    faLinkedin() {
+      return faLinkedin;
+    }
   },
   async asyncData({ env }) {
     const team = await contentful.getEntries({
@@ -106,41 +104,41 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 </script>
 
 <style>
-  .embed-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  #about-us .p-4 {
+    padding: 1rem !important;
   }
-  .embed-container iframe,
-  .embed-container object,
-  .embed-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  @media screen and (max-width: 768px) {
-    #about-us .p-4 {
-      padding: 1rem !important;
-    }
-  }
-  #team h4 {
-    margin-bottom: 0;
-  }
-  #team img {
-    border-radius: 50%;
-  }
-  #team .text-muted {
-    margin-bottom: 5px;
-  }
-  #team .socials {
-    padding: 0;
-    margin: 0;
-  }
-  #team .socials li {
-    display: inline;
-  }
+}
+#team h4 {
+  margin-bottom: 0;
+}
+#team img {
+  border-radius: 50%;
+}
+#team .text-muted {
+  margin-bottom: 5px;
+}
+#team .socials {
+  padding: 0;
+  margin: 0;
+}
+#team .socials li {
+  display: inline;
+}
 </style>
