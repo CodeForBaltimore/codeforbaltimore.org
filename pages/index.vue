@@ -150,6 +150,7 @@ export default {
   background-position: top center;
   padding-top: 10em;
   padding-bottom: 2em;
+  background-size: cover;
 }
 
 a.slide-link:link,
@@ -158,5 +159,11 @@ a.slide-link:visited,
 a.slide-link:active {
   color: white !important;
   text-decoration: none;
+  text-shadow: 2px 2px 4px #000;
+}
+
+a.slide-link a.btn:hover {
+  color: black !important;
+  text-shadow: none;
 }
 </style>
