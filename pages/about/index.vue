@@ -30,7 +30,7 @@
         <div class="col-sm-12 py-3">
           <h3 class="display-4">Team Members</h3>
           <div class="row text-center py-3">
-            <div v-for="(member, index) in team.items" :key="index" class="col-sm-4 py-4 mx-auto">
+            <div v-for="(member, index) in team" :key="index" class="col-sm-4 py-4 mx-auto">
               <img
                 v-if="member.fields.picture"
                 v-bind:src="'https:' + member.fields.picture.fields.file.url"
@@ -79,10 +79,10 @@
 
 
 <script>
-  import { createClient } from "~/plugins/contentful.js";
-  import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import contentful from "~/plugins/contentful.js";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-  const client = createClient();
+// const client = createClient();
 
   export default {
     computed: {
@@ -92,17 +92,17 @@
       faLinkedin() {
         return faLinkedin;
       }
-    },
-    async asyncData({ env }) {
-      const team = await client.getEntries({
-        content_type: "team",
-        order: "fields.title",
-        include: 5
-      });
+  },
+  async asyncData({ env }) {
+    const team = await contentful.getEntries({
+      content_type: "team",
+      order: "fields.title",
+      include: 5
+    });
 
-      return { team };
-    }
-  };
+    return { team: team.items };
+  }
+};
 </script>
 
 <style>
