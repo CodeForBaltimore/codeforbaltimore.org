@@ -50,8 +50,10 @@
               <ul v-if="member.fields.socialLinks" class="socials">
                 <li v-for="(link, i) in member.fields.socialLinks" :key="i">
                   <a v-bind:href="link" target="_blank">
+                    <fa v-if="link.includes('facebook')" :icon="faFacebook" />
                     <fa v-if="link.includes('github')" :icon="faGithub" />
                     <fa v-if="link.includes('linkedin')" :icon="faLinkedin" />
+                    <fa v-if="link.includes('twitter')" :icon="faTwitter" />
                   </a>
                 </li>
               </ul>
@@ -79,15 +81,21 @@
 
 <script>
 import contentful from "~/plugins/contentful.js";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export default {
   computed: {
+    faFacebook() {
+      return faFacebook;
+    },
     faGithub() {
       return faGithub;
     },
     faLinkedin() {
       return faLinkedin;
+    },
+    faTwitter() {
+      return faTwitter;
     }
   },
   async asyncData({ env }) {
