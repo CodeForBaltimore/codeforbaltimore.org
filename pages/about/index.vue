@@ -45,6 +45,8 @@
               />
 
               <h4>{{ member.fields.name }}</h4>
+              <p class="text-muted">{{ member.fields.title }}</p>
+              <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
               <ul v-if="member.fields.socialLinks" class="socials">
                 <li v-for="(link, i) in member.fields.socialLinks" :key="i">
                   <a v-bind:href="link" target="_blank">
@@ -53,9 +55,6 @@
                   </a>
                 </li>
               </ul>
-
-              <p class="text-muted">{{ member.fields.title }}</p>
-              <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
             </div>
           </div>
 
