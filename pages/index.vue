@@ -57,7 +57,7 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled=true :perPage=2 :autoplay=true :loop=true :autoplayTimeout=5000>
+      <carousel :navigationEnabled=true :perPageCustom=[[320,1],[750,2]] :autoplay=true :loop=true :autoplayTimeout=5000>
         <slide v-for="(project,index) in projects" :key="index">
           <div
             class="content text-center slide"
@@ -67,7 +67,7 @@
             <div class="carouselText" v-html="$md.render(project.fields.summary)"></div>
             <a
               role="button"
-              class="btn btn-outline-light my-2"
+              class="btn btn-outline-primary my-2"
               target="_blank"
               v-bind:href="project.fields.githubLink"
             >Learn more</a>
