@@ -12,7 +12,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Code for Baltimore', 
+    title: 'Code for Baltimore',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -36,14 +36,21 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-carousel'
+    '~/plugins/vue-carousel',
+    {
+      src: '@/plugins/vuelayers',
+      ssr: false
+    }
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    
+    '@nuxtjs/moment'
   ],
+  moment: {
+    defaultTimezone: 'America/New_York'
+  },
   /*
   ** Nuxt.js modules
   */
@@ -53,7 +60,8 @@ export default {
     'nuxt-fontawesome',
     '@nuxtjs/markdownit',
     '@nuxtjs/axios', ,
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '~/modules/vuelayers'
   ],
   /*
   ** Fontawesome config

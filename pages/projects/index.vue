@@ -89,7 +89,6 @@
 <script>
 import contentful from "~/plugins/contentful.js";
 
-
 export default {
   async asyncData({ env }) {
     const projects = await contentful.getEntries({

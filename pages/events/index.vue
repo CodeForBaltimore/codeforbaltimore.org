@@ -26,29 +26,52 @@
             <h3 class="display-4">Upcoming Events:</h3>
           </div>
         </div>
-        <div v-for="(event, index) in events.rss.channel[0].item" :key="index">
+        <div v-for="(event, index) in events" :key="index">
           <div class="row py-2">
             <div class="col-sm-8 py-2 my-auto order-lg-first">
-              <h4 v-if="findDate(event.description[0])" style="color:#1e6488">
-                {{ event.description[0].substring(
-                event.description[0].indexOf(findDate(event.description[0])),
-                event.description[0].indexOf(findAmPm(event.description[0]))) }}{{ findAmPm(event.description[0]) }}
-              </h4>
-              <h3>{{ event.title[0] }}</h3>
+              <h4
+                v-if="event.fields.date"
+                style="color:#1e6488"
+              >{{ $moment(event.fields.date).format('MMMM Do YYYY, h:mm a') }}</h4>
+              <h3>{{ event.fields.title }}</h3>
               <p class="text-muted">
                 <i class="fas fa-map-marker-alt"></i> Spark Baltimore
               </p>
-              <div
-                v-html="event.description[0].substring(0,event.description[0].indexOf('<p>--<br/>'))"
-              ></div>
+              <div v-html="$md.render(event.fields.description)"></div>
 
-              <a v-bind:href="event.guid[0]._">
+              <a v-bind:href="event.fields.meetupUrl">
                 <button type="button" class="btn btn-outline-primary">Attend</button>
               </a>
             </div>
-            <div class="col-sm-12 py-2 my-auto">
-              <hr />
-            </div>
+          </div>
+          <div>
+            <vl-map
+              :controls="controls"
+              :load-tiles-while-animating="true"
+              :load-tiles-while-interacting="true"
+              style="height: 400px"
+            >
+              <vl-view
+                :zoom.sync="zoom"
+                :center.sync="event.fields.location"
+                :rotation.sync="rotation"
+                projection="EPSG:4326"
+              ></vl-view>
+
+              <vl-layer-tile id="osm">
+                <vl-source-osm></vl-source-osm>
+              </vl-layer-tile>
+
+              <vl-feature v-if="event.fields.location" id="position-feature">
+                <vl-geom-point :coordinates="event.fields.location"></vl-geom-point>
+                <vl-style-box>
+                  <vl-style-icon src="/images/marker.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
+                </vl-style-box>
+              </vl-feature>
+            </vl-map>
+          </div>
+          <div class="col-sm-12 py-2 my-auto">
+            <hr />
           </div>
         </div>
 
@@ -57,7 +80,7 @@
             <h3>
               Get notified of our next event:
               <a
-                v-bind:href="events.rss.channel[0].link[0]"
+                href="http://www.meetup.com/Code-for-Baltimore/events/"
                 target="_blank"
               >Join our Meetup group</a>
             </h3>
@@ -70,54 +93,36 @@
 </template>
 
 <script>
-const parseString = require("xml2js").parseString;
+import contentful from "~/plugins/contentful.js";
+import VueLayers from "vuelayers";
+import "vuelayers/lib/style.css"; // needs css-loader
+import moment from "moment";
 
 export default {
-  methods: {
-    findDate: desc => {
-      const days = [
-        "Sunday, ",
-        "Monday, ",
-        "Tuesday, ",
-        "Wednesday, ",
-        "Thursday, ",
-        "Friday, ",
-        "Saturday, "
-      ];
-
-      let res = false;
-
-      days.forEach(day => {
-        if (desc.indexOf(day) > 0) res = day;
-      });
-
-      return res;
-    },
-    findAmPm: desc => {
-      const amPms = [' AM',' PM',' am',' pm'];
-
-      let res = false;
-
-      amPms.forEach(amPm => {
-        if (desc.indexOf(amPm) > 0) res = amPm;
-      });
-
-      return res;
-    }
+  components: {
+    VueLayers
   },
-  async asyncData({ $axios }) {
-    let events;
-    try {
-      const meetup = await $axios.$get(`/Code-for-Baltimore/events/rss/`);
+  async asyncData({ env }) {
+    const events = await contentful.getEntries({
+      content_type: "event",
+      order: "fields.title",
+      include: 5
+    });
 
-      const parse = parseString(meetup, (e, result) => {
-        events = result;
-      });
-    } catch (e) {
-      console.error(`Error: ${e}`);
+    // Making the location OL/OSM compatable for ease of use...
+    for (var i = 0; i < events.items.length; i++) {
+      events.items[i].fields.location = [
+        events.items[i].fields.location.lon,
+        events.items[i].fields.location.lat
+      ];
     }
 
-    return { events };
+    return {
+      events: events.items,
+      zoom: 15,
+      rotation: 0,
+      controls: false
+    };
   }
 };
 </script>
