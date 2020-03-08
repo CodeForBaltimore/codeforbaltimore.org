@@ -14,6 +14,9 @@
         <div class="row py-2">
           <div class="col-sm-12 py-2 my-auto">
             <h3 class="display-4">Upcoming Events:</h3>
+            <!-- <div v-for="(details,venue) of locations" :key="venue">
+              <h1>{{ details.geolocation }}</h1>
+            </div>-->
           </div>
           <vl-map
             :load-tiles-while-animating="true"
@@ -28,31 +31,112 @@
               projection="EPSG:4326"
             ></vl-view>
 
+            <!-- <vl-interaction-select>
+              <template slot-scope="feature">
+                <vl-style-box>
+                  <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+                  <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+                  <vl-style-circle :radius="5">
+                    <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+                    <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+                  </vl-style-circle>
+                </vl-style-box>
+                <vl-style-box :z-index="1">
+                  <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
+                  <vl-style-circle :radius="5">
+                    <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
+                  </vl-style-circle>
+                </vl-style-box>
+                
+                <vl-overlay
+                  class="feature-popup"
+                  :key="feature.id"
+                  :id="feature.id"
+                  :position="center"
+                  :auto-pan="true"
+                  :auto-pan-animation="{ duration: 300 }"
+                >
+                  <h3>test</h3>
+                </vl-overlay>
+              </template>
+            </vl-interaction-select>-->
+
             <vl-layer-tile class="osm">
               <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
 
-            <vl-feature class="point">
-              <vl-geom-point :coordinates="[-76.6072, 39.28954]"></vl-geom-point>
-              <vl-style-box>
-                <vl-style-icon src="/images/marker.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
-              </vl-style-box>
-            </vl-feature>
+            <div v-for="(details,venue) of locations" :key="venue">
+              <vl-feature class="point">
+                <vl-geom-point :coordinates="details.latLong"></vl-geom-point>
+                <vl-style-box>
+                  <vl-style-icon src="/images/marker.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
+                </vl-style-box>
+                <!-- interactions -->
+                <vl-interaction-select :features.sync="selectedFeatures">
+                  <template slot-scope="select">
+                    <!-- select styles -->
+                    <vl-style-box>
+                      <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+                      <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+                      <vl-style-circle :radius="5">
+                        <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+                        <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+                      </vl-style-circle>
+                    </vl-style-box>
+                    <vl-style-box :z-index="1">
+                      <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
+                      <vl-style-circle :radius="5">
+                        <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
+                      </vl-style-circle>
+                    </vl-style-box>
+                    <!--// select styles -->
 
-            <vl-geoloc>
-              <template slot-scope="geoloc">
-                <vl-feature v-if="geoloc.position" id="position-feature">
-                  <vl-geom-point :coordinates="geoloc.position"></vl-geom-point>
-                  <vl-style-box>
-                    <vl-style-icon src="/images/flag.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
-                  </vl-style-box>
-                </vl-feature>
-              </template>
-            </vl-geoloc>
+                    <!-- selected feature popup -->
+                    <vl-overlay
+                      class="feature-popup"
+                      v-for="feature in select.features"
+                      :key="feature.id"
+                      :id="feature.id"
+                      :position="findPointOnSurface(feature.geometry)"
+                      :auto-pan="true"
+                      :auto-pan-animation="{ duration: 300 }"
+                    >
+                      <template slot-scope="popup">
+                        <section class="card">
+                          <header class="card-header">
+                            <p class="card-header-title">{{ venue }}</p>
+                            <a
+                              class="card-header-icon"
+                              title="Close"
+                              @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)"
+                            >
+                              X
+                            </a>
+                          </header>
+                          <div class="card-content">
+                            <div class="content">
+                              <ul v-for="(date,index) of details.dates" :key="index">
+                                <li>
+                                  <a
+                                    v-bind:href="`#${date.title.replace(/ /g,'').replace('#','')}`"
+                                  >{{ $moment(date.date).format('MMMM Do YYYY, h:mm a') }}</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </section>
+                      </template>
+                    </vl-overlay>
+                    <!--// selected popup -->
+                  </template>
+                </vl-interaction-select>
+                <!--// interactions -->
+              </vl-feature>
+            </div>
           </vl-map>
         </div>
         <div v-for="(event, index) in events" :key="index">
-          <div class="row py-2">
+          <div v-bind:id="event.fields.title.replace(/ /g,'').replace('#','')" class="row py-2">
             <div class="col-sm-8 py-2 my-auto order-lg-first">
               <h4
                 v-if="event.fields.date"
@@ -106,19 +190,35 @@
 <script>
 import contentful from "~/plugins/contentful.js";
 import VueLayers from "vuelayers";
+import {
+  createProj,
+  addProj,
+  findPointOnSurface,
+  createStyle,
+  createMultiPointGeom,
+  loadingBBox
+} from "vuelayers/lib/ol-ext";
 import "vuelayers/lib/style.css"; // needs css-loader
 import moment from "moment";
 
 const locationPins = async events => {
-  let locations = [];
+  let locations = {};
 
-  for (var event of events) {
+  for (const event of events) {
     if (locations[event.fields.venueName] !== undefined) {
-      locations[event.fields.venueName].dates.push(event.fields.date);
+      locations[event.fields.venueName].dates.push({
+        title: event.fields.title,
+        date: event.fields.date
+      });
     } else {
       locations[event.fields.venueName] = {
-        geolocation: [event.fields.location.lon, event.fields.location.lat],
-        dates: [event.fields.date]
+        latLong: [event.fields.location.lon, event.fields.location.lat],
+        dates: [
+          {
+            title: event.fields.title,
+            date: event.fields.date
+          }
+        ]
       };
     }
   }
@@ -130,20 +230,24 @@ export default {
   components: {
     VueLayers
   },
+  methods: {
+    findPointOnSurface
+  },
   async asyncData({ env }) {
-    const events = await contentful.getEntries({
+    const eventsArray = await contentful.getEntries({
       content_type: "event",
       order: "fields.title",
       include: 5
     });
-    // Making the location OL/OSM compatable for ease of use...
-    const locations = await locationPins(events.items);
+    const events = eventsArray.items;
+    const locations = await locationPins(events);
     return {
-      events: events.items,
-      locations: locations,
+      events,
+      locations,
       zoom: 13,
       rotation: 0,
-      center: [-76.6072, 39.28954]
+      center: [-76.6072, 39.28954],
+      selectedFeatures: []
     };
   }
 };
@@ -178,5 +282,22 @@ export default {
   border-radius: 0;
   margin-bottom: 0;
   background-position: 50% 60%;
+}
+
+.feature-popup {
+  position: absolute;
+  left: -50px;
+  bottom: 12px;
+  width: 20em;
+  max-width: none;
+}
+
+.card-content {
+  max-height: 20em;
+  overflow: auto;
+}
+
+.content {
+  word-break: break-all;
 }
 </style>
