@@ -69,6 +69,9 @@
                 <button type="button" class="btn btn-outline-primary">Attend</button>
               </a>
             </div>
+            <div class="col-sm-4 py-2 my-auto">
+              <img v-bind:src="'https:' + event.fields.venueImage.fields.file.url" />
+            </div>
           </div>
 
           <div class="col-sm-12 py-2 my-auto">
