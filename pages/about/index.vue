@@ -84,6 +84,9 @@ import contentful from "~/plugins/contentful.js";
 import { faFacebook, faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export default {
+  head: {
+    title: 'About Us | Code for Baltimore'
+  },
   computed: {
     faFacebook() {
       return faFacebook;

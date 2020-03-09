@@ -55,7 +55,8 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/axios', ,
     '@nuxtjs/proxy',
-    '~/modules/vuelayers'
+    '~/modules/vuelayers',
+    ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
   /*
   ** Fontawesome config

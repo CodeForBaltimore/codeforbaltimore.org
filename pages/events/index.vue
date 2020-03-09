@@ -185,6 +185,9 @@ const locationPins = async events => {
 };
 
 export default {
+  head: {
+    title: 'Events | Code for Baltimore'
+  },
   components: {
     VueLayers
   },

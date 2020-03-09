@@ -36,7 +36,7 @@
             <a role="button" class="btn btn-outline-primary my-2" href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI">Join Slack</a>
             </div>
         </div>
- 
+
         <div class="row py-4" id="welcome">
             <div class="col-sm py-2 my-auto">
             <h2 class="display-4">Everyone's Welcome</h2>
@@ -61,6 +61,14 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Get Involved | Code for Baltimore'
+  },
+}
+</script>
 
 <style>
     .jumbotron-involved {

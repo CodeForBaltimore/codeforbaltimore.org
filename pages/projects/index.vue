@@ -90,6 +90,9 @@
 import contentful from "~/plugins/contentful.js";
 
 export default {
+  head: {
+    title: 'Projects | Code for Baltimore'
+  },
   async asyncData({ env }) {
     const projects = await contentful.getEntries({
       content_type: "project",

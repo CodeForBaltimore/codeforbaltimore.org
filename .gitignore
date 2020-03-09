@@ -91,3 +91,6 @@ sw.*
 
 # Contentful config
 .contentful.json
+
+# Nuxt PWA
+sw.*
