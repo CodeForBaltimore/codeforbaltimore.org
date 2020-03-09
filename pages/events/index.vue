@@ -14,9 +14,6 @@
         <div class="row py-2">
           <div class="col-sm-12 py-2 my-auto">
             <h3 class="display-4">Upcoming Events:</h3>
-            <!-- <div v-for="(details,venue) of locations" :key="venue">
-              <h1>{{ details.geolocation }}</h1>
-            </div>-->
           </div>
           <vl-map
             :load-tiles-while-animating="true"
@@ -30,36 +27,6 @@
               :rotation.sync="rotation"
               projection="EPSG:4326"
             ></vl-view>
-
-            <!-- <vl-interaction-select>
-              <template slot-scope="feature">
-                <vl-style-box>
-                  <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
-                  <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
-                  <vl-style-circle :radius="5">
-                    <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
-                    <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
-                  </vl-style-circle>
-                </vl-style-box>
-                <vl-style-box :z-index="1">
-                  <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
-                  <vl-style-circle :radius="5">
-                    <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
-                  </vl-style-circle>
-                </vl-style-box>
-                
-                <vl-overlay
-                  class="feature-popup"
-                  :key="feature.id"
-                  :id="feature.id"
-                  :position="center"
-                  :auto-pan="true"
-                  :auto-pan-animation="{ duration: 300 }"
-                >
-                  <h3>test</h3>
-                </vl-overlay>
-              </template>
-            </vl-interaction-select>-->
 
             <vl-layer-tile class="osm">
               <vl-source-osm></vl-source-osm>
@@ -99,9 +66,9 @@
                       :id="feature.id"
                       :position="findPointOnSurface(feature.geometry)"
                       :auto-pan="true"
-                      :auto-pan-animation="{ duration: 300 }"
+                      :auto-pan-animation="{ duration: 100 }"
                     >
-                      <template slot-scope="popup">
+                      <template>
                         <section class="card">
                           <header class="card-header">
                             <p class="card-header-title">{{ venue }}</p>
@@ -109,9 +76,7 @@
                               class="card-header-icon"
                               title="Close"
                               @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)"
-                            >
-                              X
-                            </a>
+                            >X</a>
                           </header>
                           <div class="card-content">
                             <div class="content">
@@ -190,14 +155,7 @@
 <script>
 import contentful from "~/plugins/contentful.js";
 import VueLayers from "vuelayers";
-import {
-  createProj,
-  addProj,
-  findPointOnSurface,
-  createStyle,
-  createMultiPointGeom,
-  loadingBBox
-} from "vuelayers/lib/ol-ext";
+import { findPointOnSurface } from "vuelayers/lib/ol-ext"; // needs location method
 import "vuelayers/lib/style.css"; // needs css-loader
 import moment from "moment";
 
@@ -234,12 +192,12 @@ export default {
     findPointOnSurface
   },
   async asyncData({ env }) {
-    const eventsArray = await contentful.getEntries({
+    const contentfulEvents = await contentful.getEntries({
       content_type: "event",
       order: "fields.title",
       include: 5
     });
-    const events = eventsArray.items;
+    const events = contentfulEvents.items;
     const locations = await locationPins(events);
     return {
       events,
