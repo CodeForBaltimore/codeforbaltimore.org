@@ -21,7 +21,12 @@
             alt="Get involved at hack night icon"
           />
           <p class="lead">Volunteer with us and share your skills</p>
-          <nuxt-link role="button" class='btn btn-outline-primary my-2' to="/get-involved" exact>Get Involved</nuxt-link>
+          <nuxt-link
+            role="button"
+            class="btn btn-outline-primary my-2"
+            to="/get-involved"
+            exact
+          >Get Involved</nuxt-link>
         </div>
         <div class="col-sm p-4">
           <img src="images/icon_slack.png" class="mx-auto d-block img-fluid" alt="Slack logo/icon" />
@@ -52,28 +57,22 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled="true">
-        <div v-for="(project,index) in projects" :key="index">
-          <slide>
-            <a v-bind:href="project.fields.githubLink" target="_blank">
-              <img
-                v-bind:src="'https:' + project.fields.picture.fields.file.url"
-                class="d-block w-100 img-fluid"
-                v-bind:alt="project.fields.title"
-              />
-            </a>
-            <div class="content text-center">
-              <h3 class="display-4">{{ project.fields.title }}</h3>
-              <div v-html="$md.render(project.fields.summary)"></div>
-              <a
-                role="button"
-                class="btn btn-outline-light my-2"
-                target="_blank"
-                v-bind:href="project.fields.githubLink"
-              >Learn more</a>
-            </div>
-          </slide>
-        </div>
+      <carousel :navigationEnabled=true :perPageCustom=[[320,1],[750,2]] :autoplay=true :loop=true :autoplayTimeout=5000>
+        <slide v-for="(project,index) in projects" :key="index">
+          <div
+            class="content text-center slide"
+            v-bind:style="'background-image: url(https:' + project.fields.picture.fields.file.url + ')'"
+          >
+            <h3 class="display-4 carouselText">{{ project.fields.title }}</h3>
+            <div class="carouselText" v-html="$md.render(project.fields.summary)"></div>
+            <a
+              role="button"
+              class="btn btn-outline-primary my-2"
+              target="_blank"
+              v-bind:href="project.fields.githubLink"
+            >Learn more</a>
+          </div>
+        </slide>
       </carousel>
     </div>
   </div>
@@ -141,10 +140,36 @@ export default {
   min-height: 100px;
 }
 
+.carouselText {
+  color: #fff;
+  text-shadow: 2px 2px 6px #4c4c4c;
+}
+
 .label {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.slide {
+  background-position: top center;
+  padding-top: 10em;
+  padding-bottom: 2em;
+  background-size: cover;
+}
+
+a.slide-link:link,
+a.slide-link:hover,
+a.slide-link:visited,
+a.slide-link:active {
+  color: white !important;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px #000;
+}
+
+a.slide-link a.btn:hover {
+  color: black !important;
+  text-shadow: none;
 }
 </style>
