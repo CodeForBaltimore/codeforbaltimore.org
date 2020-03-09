@@ -208,15 +208,6 @@ a:hover {color: #cf1f42 !important;}
 .site-title,.site-title:visited{
 	color:#47484a
 }
-.site-footer{
-	padding:30px 0;
-	background:#b7b7b7;
-	position:relative;
-	margin-top:6rem;
-	padding-top:3rem;
-	color:#111;
-	z-index:0
-}
 .contact-list,.social-media-list{
 	list-style:none;
 	margin-left:0

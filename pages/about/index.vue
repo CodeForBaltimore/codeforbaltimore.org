@@ -1,7 +1,7 @@
 <template>
   <div id="about">
     <div class="embed-container">
-      <iframe src="https://www.youtube.com/embed//mYzMl_HnEZU" allowfullscreen></iframe>
+      <iframe title="Learn Code for America Brigades" src="https://www.youtube.com/embed//mYzMl_HnEZU" allowfullscreen></iframe>
     </div>
 
     <div class="container">
@@ -49,11 +49,12 @@
               <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
               <ul v-if="member.fields.socialLinks" class="socials">
                 <li v-for="(link, i) in member.fields.socialLinks" :key="i">
-                  <a v-bind:href="link" target="_blank">
-                    <fa v-if="link.includes('facebook')" :icon="faFacebook" />
-                    <fa v-if="link.includes('github')" :icon="faGithub" />
-                    <fa v-if="link.includes('linkedin')" :icon="faLinkedin" />
-                    <fa v-if="link.includes('twitter')" :icon="faTwitter" />
+                  <a v-bind:href="link" target="_blank" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-social-${i}`">
+                    <span class="sr-only">{{ member.fields.name }} social links.</span>
+                    <fa v-if="link.includes('facebook')" :icon="faFacebook" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-facebook`" />
+                    <fa v-if="link.includes('github')" :icon="faGithub" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-github`" />
+                    <fa v-if="link.includes('linkedin')" :icon="faLinkedin" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-linkedin`" />
+                    <fa v-if="link.includes('twitter')" :icon="faTwitter" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-twitter`" />
                   </a>
                 </li>
               </ul>
@@ -77,7 +78,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import contentful from "~/plugins/contentful.js";

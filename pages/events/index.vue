@@ -119,7 +119,7 @@
               </a>
             </div>
             <div class="col-sm-4 py-2 my-auto">
-              <img v-bind:src="'https:' + event.fields.venueImage.fields.file.url" />
+              <img v-bind:src="'https:' + event.fields.venueImage.fields.file.url" v-bind:alt="event.fields.venueName" />
             </div>
           </div>
 
