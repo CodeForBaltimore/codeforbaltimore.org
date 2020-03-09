@@ -5,7 +5,7 @@
     <site-footer/>
   </div>
 </template>
- 
+
 <style>
 
 </style>
@@ -16,6 +16,9 @@ import SiteFooter from '../components/footer'
 
 export default {
   head: {
+    htmlAttrs: {
+      lang: 'en'
+    },
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins' }
     ]
