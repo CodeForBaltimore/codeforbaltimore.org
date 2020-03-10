@@ -1,8 +1,8 @@
 {
   "name": "codeforbaltimore.org",
-  "version": "1.0.0",
-  "description": "The Code for Baltimore website",
-  "author": "Code for Baltimore",
+  "version": "3.0.0",
+  "description": "Code for Baltimore is a brigade in the Code for America network. Our focus is on social good and civic tech in Baltimore, Maryland and the surrounding areas.",
+  "author": "Code for Baltimore and some University of Maryland students",
   "private": true,
   "scripts": {
     "dev": "nuxt",

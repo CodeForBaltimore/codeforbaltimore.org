@@ -10,7 +10,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'keywords', name: 'keywords', content: 'civic, tech, social, good, baltimore, maryland, software, development' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -91,6 +92,14 @@ export default {
   proxy: {
     '/Code-for-Baltimore/events/rss/': { target: 'https://www.meetup.com', ws: false }
   },
+  /*
+  ** PWA config
+  */
+ pwa: {
+  icon: {
+    iconSrc: 'static/images/icon.png'
+  }
+ },
   /*
   ** Build configuration
   */
