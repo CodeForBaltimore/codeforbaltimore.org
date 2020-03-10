@@ -36,12 +36,13 @@
         </div>
       </div>
 
-      <div class="row py-2" id="projects">
+      <div class="row py-2">
         <div class="col-sm-12">
           <h2 class="display-4">Active projects</h2>
         </div>
-
-        <div v-for="(project, index) in projects" :key="index">
+      </div>
+      <div id="projects">
+        <div v-for="(project, index) in projects" :key="index" class="row">
           <div class="col-lg-5 my-auto img-hov">
             <a v-bind:href="project.fields.githubLink" target="_blank">
               <img
@@ -56,30 +57,33 @@
               <a v-bind:href="project.fields.githubLink" target="_blank">{{ project.fields.title }}</a>
             </h3>
             <div class="project-desc" v-html="$md.render(project.fields.description)"></div>
-            <div v-if="project.fields.skillsNeeded" class="my-3 skills-list">
-              <h5>Skills Needed</h5>
-              <ul v-for="(skill,i) in project.fields.skillsNeeded" :key="i">
-                <li>{{ skill.fields.skill }}</li>
-              </ul>
-            </div>
-            <div v-if="project.fields.civicInterest" class="my-3 civic-list">
-              <h5>Civic Interest</h5>
-              <ul v-for="(interest,i) in project.fields.civicInterest" :key="i">
-                <li>{{ interest.fields.interest }}</li>
-              </ul>
+            <div class="buttons">
+              <div v-if="project.fields.skillsNeeded" class="my-3 skills-list">
+                <h5>Skills Needed</h5>
+                <ul v-for="(skill,i) in project.fields.skillsNeeded" :key="i">
+                  <li>{{ skill.fields.skill }}</li>
+                </ul>
+              </div>
+              <div v-if="project.fields.civicInterest" class="my-3 civic-list">
+                <h5>Civic Interest</h5>
+                <ul v-for="(interest,i) in project.fields.civicInterest" :key="i">
+                  <li>{{ interest.fields.interest }}</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="col-sm-12 py-2 my-auto">
             <hr />
           </div>
         </div>
-
-        <div class="col-sm-12 py-4 my-auto text-center">
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            onclick="window.location.href='https://github.com/CodeforBaltimore'"
-          >See more</button>
+        <div class="row">
+          <div class="col-sm-12 py-4 my-auto text-center">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              onclick="window.location.href='https://github.com/CodeforBaltimore'"
+            >See more</button>
+          </div>
         </div>
       </div>
     </div>
@@ -138,33 +142,33 @@ export default {
 #projects img:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
-#projects .skills-list li {
+#projects .buttons .skills-list li {
   background-color: #cf1f42;
 }
-#projects .civic-list li {
+#projects .buttons .civic-list li {
   background-color: #563d7c;
 }
 
-#projects ul {
+#projects .buttons ul {
   list-style-type: none;
   padding-left: 0;
 }
 
-#projects ul,
-#projects li {
+#projects .buttons ul,
+#projects .buttons li {
   display: inline;
   border-radius: 5px;
   margin: 0 5px;
   line-height: 2.75;
 }
 
-#projects li {
+#projects .buttons li {
   margin-bottom: 0.5em;
   color: white;
   padding: 5px 15px;
 }
 
-#projects li:first-child {
+#projects .buttons li:first-child {
   margin-left: 0;
 }
 
