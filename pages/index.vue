@@ -67,7 +67,7 @@
             <div class="carouselText" v-html="$md.render(project.fields.summary)"></div>
             <a
               role="button"
-              class="btn btn-outline-primary my-2"
+              class="btn btn-outline-light my-2"
               target="_blank"
               v-bind:href="project.fields.githubLink"
             >Learn more</a>
