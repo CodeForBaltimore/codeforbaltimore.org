@@ -56,9 +56,17 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/axios', ,
     '@nuxtjs/proxy',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
     '~/modules/vuelayers',
     ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
+  /*
+  ** Sitemap config
+  */
+ sitemap: {
+   hostname: 'https://codeforbaltimore.org'
+ },
   /*
   ** Fontawesome config
   */
@@ -98,6 +106,11 @@ export default {
  pwa: {
   icon: {
     iconSrc: 'static/images/icon.png'
+  },
+  meta: {
+    twitterCard: 'summary',
+    twitterSite: '@CodeForBmore',
+    twitterCreator: '@CodeForBmore'
   }
  },
   /*
