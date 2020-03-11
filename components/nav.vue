@@ -27,10 +27,10 @@
       v-bind:class="{show: showMenu}"
     >
       <div class="navbar-nav align-items-center">
-        <nuxt-link class="nav-item nav-link" to="/about" exact>About Us</nuxt-link>
-        <nuxt-link class="nav-item nav-link" to="/get-involved" exact>Get Involved</nuxt-link>
-        <nuxt-link class="nav-item nav-link" to="/events" exact>Events</nuxt-link>
-        <nuxt-link class="nav-item nav-link" to="/projects" exact>Projects</nuxt-link>
+        <nuxt-link class="nav-item nav-link" to="/about" @click.native="showMenu = !showMenu" exact>About Us</nuxt-link>
+        <nuxt-link class="nav-item nav-link" to="/get-involved" @click.native="showMenu = !showMenu" exact>Get Involved</nuxt-link>
+        <nuxt-link class="nav-item nav-link" to="/events" @click.native="showMenu = !showMenu" exact>Events</nuxt-link>
+        <nuxt-link class="nav-item nav-link" to="/projects" @click.native="showMenu = !showMenu" exact>Projects</nuxt-link>
         <a
           role="button"
           class="btn btn-outline-primary"
