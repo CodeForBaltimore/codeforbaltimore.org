@@ -57,7 +57,7 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled=true :perPageCustom=[[320,1],[750,2]] :autoplay=true :loop=true :autoplayTimeout=5000>
+      <carousel :navigationEnabled=true :perPage=1 :autoplay=true :loop=true :autoplayTimeout=5000>
         <slide v-for="(project,index) in projects" :key="index">
           <div
             class="content text-center slide"
@@ -66,6 +66,7 @@
             <h3 class="display-4 carouselText">{{ project.fields.title }}</h3>
             <div class="carouselText" v-html="$md.render(project.fields.summary)"></div>
             <a
+              v-bind:id="`${project.fields.title.replace(/ /g, '').toLowerCase()}-slider`"
               role="button"
               class="btn btn-outline-light my-2"
               target="_blank"
@@ -121,6 +122,18 @@ export default {
 
 .intro-action img {
   max-width: 125px;
+}
+#featured .btn {
+  color: black;
+}
+#featured .btn-outline-light {
+  color: #f8f9fa;
+  border: 2px solid #f8f9fa;
+  font-size: 17px;
+}
+#featured .btn-outline-light:hover {
+  background-color: #1e6488 !important;
+  color: white !important;
 }
 .intro-action .btn-outline-primary {
   color: #1e6488;
