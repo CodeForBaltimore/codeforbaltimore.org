@@ -62,17 +62,13 @@
           </div>
 
           <p class="mt-2">
-            We are always looking for more support! Currently, we need a
-            <strong>Co-Tech Lead</strong> to join our Core Team. Check out the position descriptions
-            <a
-              href="https://docs.google.com/document/d/1sZN4Ct-JjMgDASn_QNjWur7SY0M_6rst5BnxKXV4qn8/edit"
-              target="_blank"
-            >here</a>. If you are interested in these positions, please email us -
+            We are always looking for more support! If you are interested in helping, please email us at
             <a
               href="mailto:hello@codeforbaltimore.org"
               target="_blank"
-            >hello@codeforbaltimore.org</a>.
+            >hello@codeforbaltimore.org</a> or fill out our <a href="https://forms.gle/wZxQAfas1kpSmpvU8" target="_blank">volunteer interest form</a>.
           </p>
+          <p><i>For more information about volunteering please visit our <nuxt-link to="/get-involved" exact>Get Involved</nuxt-link> page!</i></p>
         </div>
       </div>
     </div>

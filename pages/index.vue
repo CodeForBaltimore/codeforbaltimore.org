@@ -167,8 +167,8 @@ export default {
 
 .slide {
   background-position: top center;
-  padding-top: 10em;
-  padding-bottom: 2em;
+  padding-top: 5em;
+  padding-bottom: 5em;
   background-size: cover;
 }
 
