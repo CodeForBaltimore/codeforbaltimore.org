@@ -60,14 +60,18 @@
             <div class="buttons">
               <div v-if="project.fields.skillsNeeded" class="my-3 skills-list">
                 <h5>Skills Needed</h5>
-                <ul v-for="(skill,i) in project.fields.skillsNeeded" :key="i">
-                  <li>{{ skill.fields.skill }}</li>
+                <ul>
+                  <li v-for="(skill,i) in project.fields.skillsNeeded" :key="i">
+                    {{ skill.fields.skill }}
+                  </li>
                 </ul>
               </div>
               <div v-if="project.fields.civicInterest" class="my-3 civic-list">
                 <h5>Civic Interest</h5>
-                <ul v-for="(interest,i) in project.fields.civicInterest" :key="i">
-                  <li>{{ interest.fields.interest }}</li>
+                <ul>
+                  <li v-for="(interest,i) in project.fields.civicInterest" :key="i">
+                    {{ interest.fields.interest }}
+                  </li>
                 </ul>
               </div>
             </div>
@@ -154,22 +158,13 @@ export default {
   padding-left: 0;
 }
 
-#projects .buttons ul,
-#projects .buttons li {
-  display: inline;
+#projects .buttons li{
+  display: inline-block;
   border-radius: 5px;
   margin: 0 5px;
-  line-height: 2.75;
-}
-
-#projects .buttons li {
   margin-bottom: 0.5em;
   color: white;
   padding: 5px 15px;
-}
-
-#projects .buttons li:first-child {
-  margin-left: 0;
 }
 
 .img-hov {
