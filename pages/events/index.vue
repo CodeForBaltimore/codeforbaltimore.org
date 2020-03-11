@@ -119,7 +119,10 @@
               </a>
             </div>
             <div class="col-sm-4 py-2 my-auto">
-              <img v-bind:src="'https:' + event.fields.venueImage.fields.file.url" v-bind:alt="event.fields.venueName" />
+              <img
+                v-bind:src="'https:' + event.fields.venueImage.fields.file.url"
+                v-bind:alt="event.fields.venueName"
+              />
             </div>
           </div>
 
@@ -186,7 +189,7 @@ const locationPins = async events => {
 
 export default {
   head: {
-    title: 'Events | Code for Baltimore'
+    title: "Events | Code for Baltimore"
   },
   components: {
     VueLayers
@@ -253,6 +256,13 @@ export default {
   max-width: none;
 }
 
+.card-header-title {
+  float: left;
+}
+
+.card-header-icon {
+  float: right;
+}
 .card-content {
   max-height: 20em;
   overflow: auto;
