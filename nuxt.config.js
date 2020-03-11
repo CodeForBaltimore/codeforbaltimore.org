@@ -14,7 +14,8 @@ export default {
       { hid: 'keywords', name: 'keywords', content: 'civic, tech, social, good, baltimore, maryland, software, development' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: 'manifest.json'}
     ]
   },
   /*
@@ -104,9 +105,6 @@ export default {
   ** PWA config
   */
  pwa: {
-  icon: {
-    iconSrc: 'static/images/icon.png'
-  },
   meta: {
     twitterCard: 'summary',
     twitterSite: '@CodeForBmore',
