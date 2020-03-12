@@ -143,6 +143,7 @@ export default {
 #featured .btn-outline-light {
   color: #f8f9fa;
   border: 2px solid #f8f9fa;
+  text-shadow: 2px 2px 6px #4c4c4c;
   font-size: 17px;
 }
 #featured .btn-outline-light:hover {

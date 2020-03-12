@@ -33,7 +33,7 @@
             <div class="col-sm p-4">
             <img src="images/icon_slack.png" class="mx-auto d-block img-fluid" alt="Slack logo/icon">
             <p class="lead">Stay in touch and connect with us on Slack</p>
-            <a role="button" class="btn btn-outline-primary my-2" href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/zt-4m78ibqc-_fWcn4XLoqm2rQ661csgbA">Join Slack</a>
+            <a role="button" class="btn btn-outline-primary my-2" v-bind:href="slack">Join Slack</a>
             </div>
         </div>
 
@@ -67,6 +67,9 @@ export default {
   head: {
     title: 'Get Involved | Code for Baltimore'
   },
+  data() {
+      return { slack: process.env.SLACK_LINK }
+  }
 }
 </script>
 

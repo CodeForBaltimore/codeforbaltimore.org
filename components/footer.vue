@@ -30,7 +30,7 @@
                 class="btn btn-outline-dark"
                 target="_blank"
                 rel="noreferrer"
-                href="https://github.com/CodeForBaltimore/codeforbaltimore.github.io/issues"
+                href="https://github.com/CodeForBaltimore/CfB-websiteV3/issues"
               >Submit an issue</a>
             </li>
           </ul>
@@ -43,8 +43,9 @@
             </li>
             <li>
               <a
-                href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI"
+                v-bind:href="slack"
                 target="_blank"
+                rel="noreferrer"
               >Slack</a>
             </li>
             <li>
@@ -126,3 +127,11 @@ footer .btn-outline-dark {
   color: #1e6488 !important;
 }
 </style>
+
+<script>
+  export default {
+    data() {
+      return { slack: process.env.SLACK_LINK }
+    }
+  }
+</script>
