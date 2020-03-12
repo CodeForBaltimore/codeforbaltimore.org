@@ -19,7 +19,7 @@ export default {
       lang: 'en'
     },
     link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins' }
+      { rel: 'stylesheet dns-prefetch preconnect', href: 'https://fonts.googleapis.com/css?family=Poppins' }
     ]
   },
   components: {

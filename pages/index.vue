@@ -69,6 +69,7 @@
         <slide v-for="(project,index) in projects" :key="index">
           <div
             class="content text-center slide"
+            rel="dns-prefetch preconnect"
             v-bind:style="'background-image: url(https:' + project.fields.picture.fields.file.url + ')'"
           >
             <h3 class="display-4 carouselText">{{ project.fields.title }}</h3>
