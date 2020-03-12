@@ -15,6 +15,7 @@
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate"
   },
   "dependencies": {
+    "@dansmaculotte/nuxt-security": "0.0.1-0",
     "@fortawesome/free-brands-svg-icons": "5.12.1",
     "@fortawesome/vue-fontawesome": "0.1.9",
     "@nuxtjs/axios": "5.9.5",

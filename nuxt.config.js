@@ -15,7 +15,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'manifest', href: 'manifest.json'}
+      { rel: 'manifest', href: '/manifest.json'}
     ]
   },
   /*
@@ -55,13 +55,29 @@ export default {
     'bootstrap-vue/nuxt',
     'nuxt-fontawesome',
     '@nuxtjs/markdownit',
-    '@nuxtjs/axios', ,
-    '@nuxtjs/proxy',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    '@dansmaculotte/nuxt-security',
     '~/modules/vuelayers',
     ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
+  /*
+  ** Security configuration
+  */
+ security: {
+  features: {
+    notifications: ["'none"],
+    camera: ["'none"]
+  },
+  securityFile: {
+    contacts: 'mailto:hello@codeforbaltimore.org',
+    preferredLanguages: 'en',
+    acknowledgements: 'https://codeforbaltimore.org/about#team',
+    policies: 'https://codeforbaltimore.org/code-of-conduct',
+    hirings: 'https://codeforbaltimore.org/get-involved'
+  },
+  additionalHeaders: true
+ },
   /*
   ** Sitemap config
   */
@@ -88,18 +104,6 @@ export default {
     linkify: true,
     breaks: true,
     injected: true
-  },
-  /*
-  ** Axios config
-  */
-  axios: {
-    proxy: true
-  },
-  /*
-  ** Proxy config
-  */
-  proxy: {
-    '/Code-for-Baltimore/events/rss/': { target: 'https://www.meetup.com', ws: false }
   },
   /*
   ** PWA config
