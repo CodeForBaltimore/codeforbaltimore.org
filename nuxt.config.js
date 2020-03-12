@@ -14,6 +14,9 @@ export default {
       { hid: 'keywords', name: 'keywords', content: 'civic, tech, social, good, baltimore, maryland, software, development' }
     ]
   },
+  generate: {
+    fallback: true
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -67,20 +70,53 @@ export default {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'","'unsafe-inline'","'unsafe-eval'"],
         connectSrc: ["'self' *.contentful.com"],
-        imgSrc: ["'self' images.ctfassets.net *.tile.openstreetmap.org"],
+        imgSrc: ["'self' data: images.ctfassets.net *.tile.openstreetmap.org"],
         styleSrc: ["'self' fonts.googleapis.com","'unsafe-inline'"],
         fontSrc: ["'self' data: fonts.gstatic.com",],
         frameSrc: ["'self' www.youtube.com youtube.com"]
       },
       loose: false,
       reportOnly: false,
-      setAllHeaders: false,
+      setAllHeaders: true,
       disableAndroid: false,
       browserSniff: true
     },
+    referrer: 'same-origin',
     features: {
+      accelerometer: ["'none"],
+      ambientLightSensor: ["'none"],
+      autoplay:  ["'none"],
+      camera: ["'none"],
+      documentDomain: ["'none"],
+      documentWrite: ["'none"],
+      encryptedMedia: ["'none"],
+      fontDisplayLateSwap: ["'none"],
+      fullscreen: ["'none"],
+      geolocation: ["'none"],
+      gyroscope: ["'none"],
+      layoutAnimations: ["'none"],
+      legacyImageFormats: ["'none"],
+      loadingFrameDefaultEager: ["'none"],
+      magnetometer: ["'none"],
+      microphone: ["'none"],
+      midi: ["'none"],
       notifications: ["'none"],
-      camera: ["'none"]
+      oversizedImages: ["'none"],
+      payment: ["'none"],
+      pictureInPicture: ["'none"],
+      serial: ["'none"],
+      speaker: ["'none"],
+      syncScript: ["'none"],
+      syncXhr: ["'none"],
+      unoptimizedImages: ["'none"],
+      unoptimizedLosslessImages: ["'none"],
+      unsizedMedia: ["'none"],
+      usb: ["'none"],
+      verticalScroll: ["'none"],
+      vibrate: ["'none"],
+      vr: ["'none"],
+      wakeLock: ["'none"],
+      xr: ["'none"]
     },
     securityFile: {
       contacts: 'mailto:hello@codeforbaltimore.org',
