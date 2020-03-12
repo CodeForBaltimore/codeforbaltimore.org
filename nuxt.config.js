@@ -62,6 +62,22 @@ export default {
   ** Security configuration
   */
   security: {
+    csp: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'","'unsafe-inline'","'unsafe-eval'"],
+        connectSrc: ["'self' *.contentful.com"],
+        imgSrc: ["'self' images.ctfassets.net *.tile.openstreetmap.org"],
+        styleSrc: ["'self' fonts.googleapis.com","'unsafe-inline'"],
+        fontSrc: ["'self' data: fonts.gstatic.com",],
+        frameSrc: ["'self' www.youtube.com youtube.com"]
+      },
+      loose: false,
+      reportOnly: false,
+      setAllHeaders: false,
+      disableAndroid: false,
+      browserSniff: true
+    },
     features: {
       notifications: ["'none"],
       camera: ["'none"]
