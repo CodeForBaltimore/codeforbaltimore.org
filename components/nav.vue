@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg">
     <nuxt-link class="navbar-brand" to="/" exact>
       <img
         src="/images/cfb_logo_full.png"
