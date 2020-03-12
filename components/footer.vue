@@ -29,7 +29,8 @@
                 role="button"
                 class="btn btn-outline-dark"
                 target="_blank"
-                href="https://github.com/CodeForBaltimore/codeforbaltimore.github.io/issues"
+                rel="noreferrer"
+                href="https://github.com/CodeForBaltimore/CfB-websiteV3/issues"
               >Submit an issue</a>
             </li>
           </ul>
@@ -38,19 +39,20 @@
           <h2>Connect</h2>
           <ul>
             <li>
-              <a href="https://www.meetup.com/Code-for-Baltimore/" target="_blank">Meetup</a>
+              <a href="https://www.meetup.com/Code-for-Baltimore/" target="_blank" rel="noreferrer">Meetup</a>
             </li>
             <li>
               <a
-                href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI"
+                v-bind:href="slack"
                 target="_blank"
+                rel="noreferrer"
               >Slack</a>
             </li>
             <li>
-              <a href="https://github.com/CodeForBaltimore" target="_blank">GitHub</a>
+              <a href="https://github.com/CodeForBaltimore" target="_blank" rel="noreferrer">GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/@codeforbmore" target="_blank">Twitter</a>
+              <a href="https://twitter.com/@codeforbmore" target="_blank" rel="noreferrer">Twitter</a>
             </li>
           </ul>
         </div>
@@ -67,7 +69,7 @@
               <nuxt-link to="/code-of-conduct" exact>Code of Conduct</nuxt-link>
             </li>
             <li>
-              <a target="_blank" href="https://www.codeforamerica.org/donate-to-a-brigade">Donate</a>
+              <a target="_blank" rel="noreferrer" href="https://www.codeforamerica.org/donate-to-a-brigade">Donate</a>
             </li>
           </ul>
         </div>
@@ -125,3 +127,11 @@ footer .btn-outline-dark {
   color: #1e6488 !important;
 }
 </style>
+
+<script>
+  export default {
+    data() {
+      return { slack: process.env.SLACK_LINK }
+    }
+  }
+</script>

@@ -65,3 +65,11 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Code of Conduct | Code for Baltimore'
+  },
+}
+</script>

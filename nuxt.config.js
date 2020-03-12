@@ -10,10 +10,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'keywords', name: 'keywords', content: 'civic, tech, social, good, baltimore, maryland, software, development' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: 'manifest.json'}
     ]
   },
   /*
@@ -55,8 +57,17 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/axios', ,
     '@nuxtjs/proxy',
-    '~/modules/vuelayers'
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    '~/modules/vuelayers',
+    ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
+  /*
+  ** Sitemap config
+  */
+ sitemap: {
+   hostname: 'https://codeforbaltimore.org'
+ },
   /*
   ** Fontawesome config
   */
@@ -91,6 +102,16 @@ export default {
     '/Code-for-Baltimore/events/rss/': { target: 'https://www.meetup.com', ws: false }
   },
   /*
+  ** PWA config
+  */
+ pwa: {
+  meta: {
+    twitterCard: 'summary',
+    twitterSite: '@CodeForBmore',
+    twitterCreator: '@CodeForBmore'
+  }
+ },
+  /*
   ** Build configuration
   */
   build: {
@@ -103,6 +124,7 @@ export default {
   env: {
     NODE_ENV: process.env.NODE_ENV,
     CONTENTFUL_SPACE_ID: process.env.CTF_SPACE_ID,
-    CONTENTFUL_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+    CONTENTFUL_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    SLACK_LINK: process.env.SLACK_LINK
   }
 }

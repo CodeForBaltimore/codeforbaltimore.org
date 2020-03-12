@@ -22,21 +22,21 @@
         <div class="row text-center intro-action py-4">
             <div class="col-sm p-4">
             <img src="images/hack-baltimore.png" class="mx-auto d-block img-fluid" alt="Get involved at hack night icon">
-            <p class="lead">Share your project ideas to #HackBaltimore</p>
+            <p class="lead">Share your project ideas to <a href="https://hackbaltimore.io/" target="_blank" rel="noreferrer">#HackBaltimore</a></p>
             <a role="button" class="btn btn-outline-primary my-2" target="_blank" href="https://portal.hackbaltimore.io/challenges">Submit an Idea</a>
             </div>
             <div class="col-sm p-4">
             <img src="images/icon_meetup.png" class="mx-auto d-block img-fluid" alt="Go to Meetup logo/icon">
             <p class="lead">Join us for a Hack Night or Community Night</p>
-            <a role="button" class="btn btn-outline-primary my-2" target="_blank" href="https://www.meetup.com/Code-for-Baltimore/">Join a Meetup</a>
+            <a role="button" class="btn btn-outline-primary my-2" target="_blank" href="https://www.meetup.com/Code-for-Baltimore/" rel="noreferrer">Join a Meetup</a>
             </div>
             <div class="col-sm p-4">
             <img src="images/icon_slack.png" class="mx-auto d-block img-fluid" alt="Slack logo/icon">
             <p class="lead">Stay in touch and connect with us on Slack</p>
-            <a role="button" class="btn btn-outline-primary my-2" href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI">Join Slack</a>
+            <a role="button" class="btn btn-outline-primary my-2" v-bind:href="slack">Join Slack</a>
             </div>
         </div>
- 
+
         <div class="row py-4" id="welcome">
             <div class="col-sm py-2 my-auto">
             <h2 class="display-4">Everyone's Welcome</h2>
@@ -54,13 +54,24 @@
             <p>Please fill out this form if you are new to the community. We want to learn more about you so that we understand your skillset and can find the best project fit for you. Make sure to check out the Meetup group for all of our upcoming events and join our Slack.</p>
             </div>
             <div class="col-sm-12 pb-4 my-auto">
-            <a role="button" class="btn btn-outline-primary my-2 mx-auto" target="_blank" href="https://forms.gle/wZxQAfas1kpSmpvU8">Volunteer Form</a>
+            <a role="button" class="btn btn-outline-primary my-2 mx-auto" target="_blank" rel="noreferrer" href="https://forms.gle/wZxQAfas1kpSmpvU8">Volunteer Form</a>
             </div>
         </div>
 
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'Get Involved | Code for Baltimore'
+  },
+  data() {
+      return { slack: process.env.SLACK_LINK }
+  }
+}
+</script>
 
 <style>
     .jumbotron-involved {

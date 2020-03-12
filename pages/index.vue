@@ -35,7 +35,8 @@
             role="button"
             class="btn btn-outline-primary my-2"
             target="_blank"
-            href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI"
+            rel="noreferrer"
+            v-bind:href="slack"
           >Connect on Slack</a>
         </div>
         <div class="col-sm p-4">
@@ -49,6 +50,7 @@
             role="button"
             class="btn btn-outline-primary my-2"
             target="_blank"
+            rel="noreferrer"
             href="https://www.meetup.com/Code-for-Baltimore/"
           >Join a Meetup</a>
         </div>
@@ -57,7 +59,13 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled=true :perPageCustom=[[320,1],[750,2]] :autoplay=true :loop=true :autoplayTimeout=5000>
+      <carousel
+        :navigationEnabled="true"
+        :perPage="1"
+        :autoplay="true"
+        :loop="true"
+        :autoplayTimeout="5000"
+      >
         <slide v-for="(project,index) in projects" :key="index">
           <div
             class="content text-center slide"
@@ -66,9 +74,11 @@
             <h3 class="display-4 carouselText">{{ project.fields.title }}</h3>
             <div class="carouselText" v-html="$md.render(project.fields.summary)"></div>
             <a
+              v-bind:id="`${project.fields.title.replace(/ /g, '').toLowerCase()}-slider`"
               role="button"
               class="btn btn-outline-light my-2"
               target="_blank"
+              rel="noreferrer"
               v-bind:href="project.fields.githubLink"
             >Learn more</a>
           </div>
@@ -94,7 +104,12 @@ export default {
       include: 5
     });
 
-    return { projects: projects.items };
+    const slack = process.env.SLACK_LINK;
+
+    return {
+      projects: projects.items,
+      slack
+    };
   }
 };
 </script>
@@ -121,6 +136,19 @@ export default {
 
 .intro-action img {
   max-width: 125px;
+}
+#featured .btn {
+  color: black;
+}
+#featured .btn-outline-light {
+  color: #f8f9fa;
+  border: 2px solid #f8f9fa;
+  text-shadow: 2px 2px 6px #4c4c4c;
+  font-size: 17px;
+}
+#featured .btn-outline-light:hover {
+  background-color: #1e6488 !important;
+  color: white !important;
 }
 .intro-action .btn-outline-primary {
   color: #1e6488;
@@ -154,8 +182,8 @@ export default {
 
 .slide {
   background-position: top center;
-  padding-top: 10em;
-  padding-bottom: 2em;
+  padding-top: 5em;
+  padding-bottom: 5em;
   background-size: cover;
 }
 

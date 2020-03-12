@@ -119,7 +119,10 @@
               </a>
             </div>
             <div class="col-sm-4 py-2 my-auto">
-              <img v-bind:src="'https:' + event.fields.venueImage.fields.file.url" v-bind:alt="event.fields.venueName" />
+              <img
+                v-bind:src="'https:' + event.fields.venueImage.fields.file.url"
+                v-bind:alt="event.fields.venueName"
+              />
             </div>
           </div>
 
@@ -144,6 +147,7 @@
             <a
               href="http://www.meetup.com/Code-for-Baltimore/events/"
               target="_blank"
+              rel="noreferrer"
             >Join our Meetup group</a>
           </h3>
         </div>
@@ -185,6 +189,9 @@ const locationPins = async events => {
 };
 
 export default {
+  head: {
+    title: "Events | Code for Baltimore"
+  },
   components: {
     VueLayers
   },
@@ -250,6 +257,13 @@ export default {
   max-width: none;
 }
 
+.card-header-title {
+  float: left;
+}
+
+.card-header-icon {
+  float: right;
+}
 .card-content {
   max-height: 20em;
   overflow: auto;
