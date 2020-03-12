@@ -147,6 +147,7 @@
             <a
               href="http://www.meetup.com/Code-for-Baltimore/events/"
               target="_blank"
+              rel="noreferrer"
             >Join our Meetup group</a>
           </h3>
         </div>

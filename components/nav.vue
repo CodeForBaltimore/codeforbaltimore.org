@@ -35,6 +35,7 @@
           role="button"
           class="btn btn-outline-primary"
           target="_blank"
+          rel="noreferrer"
           href="https://www.codeforamerica.org/donate-to-a-brigade"
         >Donate</a>
       </div>

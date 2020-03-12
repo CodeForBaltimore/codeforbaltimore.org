@@ -44,7 +44,7 @@
       <div id="projects">
         <div v-for="(project, index) in projects" :key="index" class="row">
           <div class="col-lg-5 my-auto img-hov">
-            <a v-bind:href="project.fields.githubLink" target="_blank">
+            <a v-bind:href="project.fields.githubLink" target="_blank" rel="noreferrer">
               <img
                 v-bind:src="'https:' + project.fields.picture.fields.file.url"
                 class="img-fluid"
@@ -54,7 +54,7 @@
           </div>
           <div class="col-lg-7 py-2 my-auto">
             <h3 class="display-4">
-              <a v-bind:href="project.fields.githubLink" target="_blank">{{ project.fields.title }}</a>
+              <a v-bind:href="project.fields.githubLink" target="_blank" rel="noreferrer">{{ project.fields.title }}</a>
             </h3>
             <div class="project-desc" v-html="$md.render(project.fields.description)"></div>
             <div class="buttons">
@@ -119,7 +119,7 @@ export default {
       rgba(255, 0, 93, 0.22032563025210083) 100%,
       rgba(9, 67, 121, 0.5144432773109244) 100%
     ),
-    url(/images/cfb_project_caro5.jpg);
+    url(/images/cfb_project_caro2.jpg);
   background-size: cover;
   color: #fff;
   border-radius: 0;

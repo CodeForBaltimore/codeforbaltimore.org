@@ -49,7 +49,7 @@
               <a v-bind:href="'mailto:' + member.fields.email">{{ member.fields.email }}</a>
               <ul v-if="member.fields.socialLinks" class="socials">
                 <li v-for="(link, i) in member.fields.socialLinks" :key="i">
-                  <a v-bind:href="link" target="_blank" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-social-${i}`">
+                  <a v-bind:href="link" target="_blank" rel="noreferrer" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-social-${i}`">
                     <span class="sr-only">{{ member.fields.name }} social links.</span>
                     <fa v-if="link.includes('facebook')" :icon="faFacebook" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-facebook`" />
                     <fa v-if="link.includes('github')" :icon="faGithub" v-bind:id="`${member.fields.name.replace(/ /g,'').toLowerCase()}-github`" />
@@ -66,7 +66,8 @@
             <a
               href="mailto:hello@codeforbaltimore.org"
               target="_blank"
-            >hello@codeforbaltimore.org</a> or fill out our <a href="https://forms.gle/wZxQAfas1kpSmpvU8" target="_blank">volunteer interest form</a>.
+              rel="noreferrer"
+            >hello@codeforbaltimore.org</a> or fill out our <a href="https://forms.gle/wZxQAfas1kpSmpvU8" target="_blank" rel="noreferrer">volunteer interest form</a>.
           </p>
           <p><i>For more information about volunteering please visit our <nuxt-link to="/get-involved" exact>Get Involved</nuxt-link> page!</i></p>
         </div>

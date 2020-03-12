@@ -29,6 +29,7 @@
                 role="button"
                 class="btn btn-outline-dark"
                 target="_blank"
+                rel="noreferrer"
                 href="https://github.com/CodeForBaltimore/codeforbaltimore.github.io/issues"
               >Submit an issue</a>
             </li>
@@ -38,7 +39,7 @@
           <h2>Connect</h2>
           <ul>
             <li>
-              <a href="https://www.meetup.com/Code-for-Baltimore/" target="_blank">Meetup</a>
+              <a href="https://www.meetup.com/Code-for-Baltimore/" target="_blank" rel="noreferrer">Meetup</a>
             </li>
             <li>
               <a
@@ -47,10 +48,10 @@
               >Slack</a>
             </li>
             <li>
-              <a href="https://github.com/CodeForBaltimore" target="_blank">GitHub</a>
+              <a href="https://github.com/CodeForBaltimore" target="_blank" rel="noreferrer">GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/@codeforbmore" target="_blank">Twitter</a>
+              <a href="https://twitter.com/@codeforbmore" target="_blank" rel="noreferrer">Twitter</a>
             </li>
           </ul>
         </div>
@@ -67,7 +68,7 @@
               <nuxt-link to="/code-of-conduct" exact>Code of Conduct</nuxt-link>
             </li>
             <li>
-              <a target="_blank" href="https://www.codeforamerica.org/donate-to-a-brigade">Donate</a>
+              <a target="_blank" rel="noreferrer" href="https://www.codeforamerica.org/donate-to-a-brigade">Donate</a>
             </li>
           </ul>
         </div>

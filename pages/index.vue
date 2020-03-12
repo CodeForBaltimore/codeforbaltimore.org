@@ -35,7 +35,8 @@
             role="button"
             class="btn btn-outline-primary my-2"
             target="_blank"
-            href="https://join.slack.com/t/codeforbaltimoreteam/shared_invite/enQtMzYxNzgzNDIyOTQ4LTBhOTdhY2JlZmJhZGQ2ZDZhM2E0MWRhYTYwM2EwZDk1MDU4MTFhNTM0YjVlNTE2YjYyYmY2Y2Q0MzE3MjQxMzI"
+            rel="noreferrer"
+            v-bind:href="slack"
           >Connect on Slack</a>
         </div>
         <div class="col-sm p-4">
@@ -49,6 +50,7 @@
             role="button"
             class="btn btn-outline-primary my-2"
             target="_blank"
+            rel="noreferrer"
             href="https://www.meetup.com/Code-for-Baltimore/"
           >Join a Meetup</a>
         </div>
@@ -57,7 +59,13 @@
 
     <div id="featured">
       <h3 class="text-center display-4 py-2" style="font-size: 2.5rem;">Featured Projects</h3>
-      <carousel :navigationEnabled=true :perPage=1 :autoplay=true :loop=true :autoplayTimeout=5000>
+      <carousel
+        :navigationEnabled="true"
+        :perPage="1"
+        :autoplay="true"
+        :loop="true"
+        :autoplayTimeout="5000"
+      >
         <slide v-for="(project,index) in projects" :key="index">
           <div
             class="content text-center slide"
@@ -70,6 +78,7 @@
               role="button"
               class="btn btn-outline-light my-2"
               target="_blank"
+              rel="noreferrer"
               v-bind:href="project.fields.githubLink"
             >Learn more</a>
           </div>
@@ -95,7 +104,12 @@ export default {
       include: 5
     });
 
-    return { projects: projects.items };
+    const slack = process.env.SLACK_LINK;
+
+    return {
+      projects: projects.items,
+      slack
+    };
   }
 };
 </script>
