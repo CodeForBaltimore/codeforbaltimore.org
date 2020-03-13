@@ -56,7 +56,7 @@ export default {
 
 <style>
 .navbar-expand-lg .navbar-nav .nav-link {
-  color: #1e6488;
+  color: #1e6488 !important;
 }
 .navbar-expand-lg .navbar-nav .nav-link:hover {
   color: #cf1f42 !important;

@@ -12,16 +12,15 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'keywords', name: 'keywords', content: 'civic, tech, social, good, baltimore, maryland, software, development' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'manifest', href: 'manifest.json'}
     ]
+  },
+  generate: {
+    fallback: true
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#71489D' },
   /*
   ** Global CSS
   */
@@ -33,6 +32,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-carousel',
+    '~/plugins/vue-cookie-accept-decline',
     {
       src: '@/plugins/vuelayers',
       ssr: false
@@ -55,19 +55,86 @@ export default {
     'bootstrap-vue/nuxt',
     'nuxt-fontawesome',
     '@nuxtjs/markdownit',
-    '@nuxtjs/axios', ,
-    '@nuxtjs/proxy',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    '@dansmaculotte/nuxt-security',
+    '@bazzite/nuxt-optimized-images',
     '~/modules/vuelayers',
+    '~/modules/vue-cookie-accept-decline',
     ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
   /*
+  ** Security configuration
+  */
+  security: {
+    csp: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'","'unsafe-inline'","'unsafe-eval'"],
+        connectSrc: ["'self' *.contentful.com"],
+        imgSrc: ["'self' data: images.ctfassets.net *.tile.openstreetmap.org"],
+        styleSrc: ["'self' fonts.googleapis.com","'unsafe-inline'"],
+        fontSrc: ["'self' data: fonts.gstatic.com",],
+        frameSrc: ["'self' www.youtube.com youtube.com"]
+      },
+      loose: false,
+      reportOnly: false,
+      setAllHeaders: true,
+      disableAndroid: false,
+      browserSniff: true
+    },
+    referrer: 'same-origin',
+    features: {
+      accelerometer: ["'none"],
+      ambientLightSensor: ["'none"],
+      autoplay:  ["'none"],
+      camera: ["'none"],
+      documentDomain: ["'none"],
+      documentWrite: ["'none"],
+      encryptedMedia: ["'none"],
+      fontDisplayLateSwap: ["'none"],
+      fullscreen: ["'none"],
+      geolocation: ["'none"],
+      gyroscope: ["'none"],
+      layoutAnimations: ["'none"],
+      legacyImageFormats: ["'none"],
+      loadingFrameDefaultEager: ["'none"],
+      magnetometer: ["'none"],
+      microphone: ["'none"],
+      midi: ["'none"],
+      notifications: ["'none"],
+      oversizedImages: ["'none"],
+      payment: ["'none"],
+      pictureInPicture: ["'none"],
+      serial: ["'none"],
+      speaker: ["'none"],
+      syncScript: ["'none"],
+      syncXhr: ["'none"],
+      unoptimizedImages: ["'none"],
+      unoptimizedLosslessImages: ["'none"],
+      unsizedMedia: ["'none"],
+      usb: ["'none"],
+      verticalScroll: ["'none"],
+      vibrate: ["'none"],
+      vr: ["'none"],
+      wakeLock: ["'none"],
+      xr: ["'none"]
+    },
+    securityFile: {
+      contacts: 'mailto:hello@codeforbaltimore.org',
+      preferredLanguages: 'en',
+      acknowledgements: 'https://codeforbaltimore.org/about#team',
+      policies: 'https://codeforbaltimore.org/code-of-conduct',
+      hirings: 'https://codeforbaltimore.org/get-involved'
+    },
+    additionalHeaders: true
+  },
+  /*
   ** Sitemap config
   */
- sitemap: {
-   hostname: 'https://codeforbaltimore.org'
- },
+  sitemap: {
+    hostname: 'https://codeforbaltimore.org'
+  },
   /*
   ** Fontawesome config
   */
@@ -90,27 +157,28 @@ export default {
     injected: true
   },
   /*
-  ** Axios config
-  */
-  axios: {
-    proxy: true
-  },
-  /*
-  ** Proxy config
-  */
-  proxy: {
-    '/Code-for-Baltimore/events/rss/': { target: 'https://www.meetup.com', ws: false }
-  },
-  /*
   ** PWA config
   */
- pwa: {
-  meta: {
-    twitterCard: 'summary',
-    twitterSite: '@CodeForBmore',
-    twitterCreator: '@CodeForBmore'
-  }
- },
+  pwa: {
+    meta: {
+      twitterCard: 'summary',
+      twitterSite: '@CodeForBmore',
+      twitterCreator: '@CodeForBmore',
+      ogHost: 'codeforbaltimore.org',
+      ogImage: {
+        path: '/social.jpg',
+        width: 1200,
+        height: 630,
+        type: 'image/jpeg'
+      }
+    }
+  },
+  /*
+  ** Image config
+  */
+  optimizedImages: {
+    optimizeImages: true
+  },
   /*
   ** Build configuration
   */
