@@ -164,7 +164,9 @@ export default {
       twitterCard: 'summary',
       twitterSite: '@CodeForBmore',
       twitterCreator: '@CodeForBmore',
-      ogHost: 'codeforbaltimore.org',
+      ogHost: 'https://codeforbaltimore.org',
+      ogTitle: 'Code For Baltimore',
+      ogUrl: 'https://codeforbaltimore.org',
       ogImage: {
         path: '/social.jpg',
         width: 1200,
