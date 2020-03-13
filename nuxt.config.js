@@ -32,6 +32,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-carousel',
+    '~/plugins/vue-cookie-accept-decline',
     {
       src: '@/plugins/vuelayers',
       ssr: false
@@ -59,6 +60,7 @@ export default {
     '@dansmaculotte/nuxt-security',
     '@bazzite/nuxt-optimized-images',
     '~/modules/vuelayers',
+    '~/modules/vue-cookie-accept-decline',
     ['@nuxtjs/pwa', { workbox: false, onesignal: false }],
   ],
   /*
