@@ -207,7 +207,7 @@ export default {
   async asyncData({ env }) {
     const contentfulEvents = await contentful.getEntries({
       content_type: "event",
-      order: "fields.title",
+      order: "fields.date",
       include: 5
     });
     const events = contentfulEvents.items;
