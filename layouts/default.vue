@@ -57,25 +57,20 @@ export default {
   },
   methods: {
     cookieStatus(status) {
-      console.log("status: " + status);
       this.status = status;
     },
     cookieClickedAccept() {
-      console.log("here in accept");
       this.status = "accept";
     },
     cookieClickedDecline() {
-      console.log("here in decline");
       this.status = "decline";
     },
     cookieRemovedCookie() {
-      console.log("here in cookieRemoved");
       this.status = null;
       this.$refs.myPanel1.init();
     },
 
     removeCookie() {
-      console.log("Cookie removed");
       this.$refs.myPanel1.removeCookie();
     }
   }
