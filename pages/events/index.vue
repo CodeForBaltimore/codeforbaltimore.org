@@ -31,72 +31,73 @@
             <vl-layer-tile class="osm">
               <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
-
-            <div v-for="(details,venue) of locations" :key="venue">
-              <vl-feature class="point">
-                <vl-geom-point :coordinates="details.latLong"></vl-geom-point>
-                <vl-style-box>
-                  <vl-style-icon src="/images/marker.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
-                </vl-style-box>
-                <!-- interactions -->
-                <vl-interaction-select :features.sync="selectedFeatures">
-                  <template slot-scope="select">
-                    <!-- select styles -->
-                    <vl-style-box>
-                      <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
-                      <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
-                      <vl-style-circle :radius="5">
+            <div v-if="locations.length > 0">
+              <div v-for="(details,venue) of locations" :key="venue">
+                <vl-feature class="point">
+                  <vl-geom-point :coordinates="details.latLong"></vl-geom-point>
+                  <vl-style-box>
+                    <vl-style-icon src="/images/marker.png" :scale="0.4" :anchor="[0.5, 1]"></vl-style-icon>
+                  </vl-style-box>
+                  <!-- interactions -->
+                  <vl-interaction-select :features.sync="selectedFeatures">
+                    <template slot-scope="select">
+                      <!-- select styles -->
+                      <vl-style-box>
                         <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
                         <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
-                      </vl-style-circle>
-                    </vl-style-box>
-                    <vl-style-box :z-index="1">
-                      <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
-                      <vl-style-circle :radius="5">
+                        <vl-style-circle :radius="5">
+                          <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+                          <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+                        </vl-style-circle>
+                      </vl-style-box>
+                      <vl-style-box :z-index="1">
                         <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
-                      </vl-style-circle>
-                    </vl-style-box>
-                    <!--// select styles -->
+                        <vl-style-circle :radius="5">
+                          <vl-style-stroke color="#d43f45" :width="2"></vl-style-stroke>
+                        </vl-style-circle>
+                      </vl-style-box>
+                      <!--// select styles -->
 
-                    <!-- selected feature popup -->
-                    <vl-overlay
-                      class="feature-popup"
-                      v-for="feature in select.features"
-                      :key="feature.id"
-                      :id="feature.id"
-                      :position="findPointOnSurface(feature.geometry)"
-                      :auto-pan="true"
-                      :auto-pan-animation="{ duration: 100 }"
-                    >
-                      <template>
-                        <section class="card">
-                          <header class="card-header">
-                            <p class="card-header-title">{{ venue }}</p>
-                            <a
-                              class="card-header-icon"
-                              title="Close"
-                              @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)"
-                            >X</a>
-                          </header>
-                          <div class="card-content">
-                            <div class="content">
-                              <ul v-for="(date,index) of details.dates" :key="index">
-                                <li>
-                                  <a
-                                    v-bind:href="`#${date.title.replace(/ /g,'').replace('#','')}`"
-                                  >{{ $moment(date.date).format('MMMM Do YYYY, h:mm a') }}</a>
-                                </li>
-                              </ul>
+                      <!-- selected feature popup -->
+                      <vl-overlay
+                        class="feature-popup"
+                        v-for="feature in select.features"
+                        :key="feature.id"
+                        :id="feature.id"
+                        :position="findPointOnSurface(feature.geometry)"
+                        :auto-pan="true"
+                        :auto-pan-animation="{ duration: 100 }"
+                      >
+                        <template>
+                          <section class="card">
+                            <header class="card-header">
+                              <p class="card-header-title">{{ venue }}</p>
+                              <a
+                                class="card-header-icon"
+                                title="Close"
+                                @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)"
+                              >X</a>
+                            </header>
+                            <div class="card-content">
+                              <div class="content">
+                                <ul v-for="(date,index) of details.dates" :key="index">
+                                  <li>
+                                    <a
+                                      v-bind:href="`#${date.title.replace(/ /g,'').replace('#','')}`"
+                                    >{{ $moment(date.date).format('MMMM Do YYYY, h:mm a') }}</a>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
-                          </div>
-                        </section>
-                      </template>
-                    </vl-overlay>
-                    <!--// selected popup -->
-                  </template>
-                </vl-interaction-select>
-                <!--// interactions -->
-              </vl-feature>
+                          </section>
+                        </template>
+                      </vl-overlay>
+                      <!--// selected popup -->
+                    </template>
+                  </vl-interaction-select>
+                  <!--// interactions -->
+                </vl-feature>
+              </div>
             </div>
           </vl-map>
         </div>
@@ -114,8 +115,11 @@
               </p>
               <div v-html="$md.render(event.fields.description)"></div>
 
-              <a v-bind:href="event.fields.meetupUrl">
-                <button type="button" class="btn btn-outline-primary">Attend</button>
+              <a v-if="event.fields.meetupUrl" v-bind:href="event.fields.meetupUrl">
+                <button type="button" class="btn btn-outline-primary">Attend in Person</button>
+              </a>
+              <a v-if="event.fields.zoomUrl" v-bind:href="event.fields.zoomUrl">
+                <button type="button" class="btn btn-outline-primary">Attend Virtually</button>
               </a>
             </div>
             <div class="col-sm-4 py-2 my-auto">
@@ -167,21 +171,23 @@ const locationPins = async events => {
   let locations = {};
 
   for (const event of events) {
-    if (locations[event.fields.venueName] !== undefined) {
-      locations[event.fields.venueName].dates.push({
-        title: event.fields.title,
-        date: event.fields.date
-      });
-    } else {
-      locations[event.fields.venueName] = {
-        latLong: [event.fields.location.lon, event.fields.location.lat],
-        dates: [
-          {
-            title: event.fields.title,
-            date: event.fields.date
-          }
-        ]
-      };
+    if (event.fields.meetupUrl) {
+      if (locations[event.fields.venueName] !== undefined) {
+        locations[event.fields.venueName].dates.push({
+          title: event.fields.title,
+          date: event.fields.date
+        });
+      } else {
+        locations[event.fields.venueName] = {
+          latLong: [event.fields.location.lon, event.fields.location.lat],
+          dates: [
+            {
+              title: event.fields.title,
+              date: event.fields.date
+            }
+          ]
+        };
+      }
     }
   }
 
