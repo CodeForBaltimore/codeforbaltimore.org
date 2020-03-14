@@ -31,7 +31,7 @@
             <vl-layer-tile class="osm">
               <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
-            <div v-if="locations.length > 0">
+            <div v-if="locations">
               <div v-for="(details,venue) of locations" :key="venue">
                 <vl-feature class="point">
                   <vl-geom-point :coordinates="details.latLong"></vl-geom-point>
@@ -171,7 +171,7 @@ const locationPins = async events => {
   let locations = {};
 
   for (const event of events) {
-    if (event.fields.meetupUrl) {
+    if (event.fields.location) {
       if (locations[event.fields.venueName] !== undefined) {
         locations[event.fields.venueName].dates.push({
           title: event.fields.title,
@@ -190,7 +190,7 @@ const locationPins = async events => {
       }
     }
   }
-
+  
   return locations;
 };
 
