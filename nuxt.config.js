@@ -39,6 +39,12 @@ export default {
     }
   ],
   /*
+  ** Robots config
+  */
+ robots: {
+    Sitemap: 'https://codeforbaltimore.org/sitemap.xml'
+ },
+  /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
