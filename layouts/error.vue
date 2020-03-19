@@ -6,6 +6,8 @@
       <h1 v-else>An error occurred</h1>
       <nuxt-link to="/">Home page</nuxt-link> | <a href="https://github.com/CodeForBaltimore/CfB-websiteV3/issues">Submit an issue</a>
     </div>
+    <script data-goatcounter="https://codeforbaltimore_org.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
   </div>
 </template>
 

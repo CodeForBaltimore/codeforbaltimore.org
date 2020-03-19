@@ -29,6 +29,8 @@
       <!-- Optional -->
       <div slot="acceptContent">GOT IT!</div>
     </vue-cookie-accept-decline>
+    <script data-goatcounter="https://codeforbaltimore_org.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
   </div>
 </template>
 
