@@ -12,7 +12,9 @@
     "test": "jest",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
-    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate"
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@bazzite/nuxt-optimized-images": "0.3.0",
@@ -44,7 +46,8 @@
     "vue-notifications": "1.0.2",
     "vuelayers": "0.11.21",
     "webpack-cli": "3.3.11",
-    "xml2js": "0.4.23"
+    "xml2js": "0.4.23",
+    "snyk": "^1.378.0"
   },
   "devDependencies": {
     "@nuxtjs/moment": "1.6.0",
@@ -57,5 +60,6 @@
     "responsive-loader": "1.2.0",
     "vue-jest": "^4.0.0-0",
     "webp-loader": "0.6.0"
-  }
+  },
+  "snyk": true
 }
