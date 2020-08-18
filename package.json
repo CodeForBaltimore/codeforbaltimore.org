@@ -47,7 +47,7 @@
     "vuelayers": "0.11.21",
     "webpack-cli": "3.3.11",
     "xml2js": "0.4.23",
-    "snyk": "^1.316.1"
+    "snyk": "^1.378.0"
   },
   "devDependencies": {
     "@nuxtjs/moment": "1.6.0",
