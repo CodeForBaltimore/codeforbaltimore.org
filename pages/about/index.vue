@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm p-4">
           <img
-            src="images/cfb-about-header.jpg"
+            src="/images/cfb-about-header.jpg"
             class="img-fluid"
             alt="Code for Baltimore Welcome image"
           />
