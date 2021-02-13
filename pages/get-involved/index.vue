@@ -41,7 +41,7 @@
             <div class="col-sm py-2 my-auto">
             <h2 class="display-4">Everyone's Welcome</h2>
             <p>While we always need more developers, Code for Baltimore welcomes designers, content creators, copywriters, storytellers, researchers, project managers, marketing specialists, and any other tech or government enthusiast!<p>
-            <p>Towards creating a safe and respectful environment for all participants, we ask all our community members to abide by our Code of Conduct. <a href="code-for-conduct.html">Code of Conduct</a></p>
+            <p>Towards creating a safe and respectful environment for all participants, we ask all our community members to abide by our <a href="/code-of-conduct">Code of Conduct</a>.</p>
             </div>
             <div class="col-sm p-4">
             <img src="images/everyones-welcomed.jpg" class="img-fluid" alt="Code for Baltimore Welcome image">
