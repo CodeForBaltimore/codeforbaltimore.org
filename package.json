@@ -47,7 +47,7 @@
     "vue-cookie-accept-decline": "5.3.1",
     "vue-notifications": "1.0.2",
     "vuelayers": "0.11.21",
-    "webpack-cli": "3.3.11",
+    "webpack-cli": "4.0.0",
     "xml2js": "0.4.23"
   },
   "devDependencies": {
